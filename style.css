@@ -1,42 +1,328 @@
-/* style.css */
+/* =============================
+   BASE LAYOUT
+   ============================= */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f9f9f9;
+  color: #222;
   line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+header, nav, section, footer {
+  max-width: 700px;   /* constrain width */
+  margin: 2rem auto;  /* top/bottom spacing + horizontal centering */
+  padding: 1rem;
 }
 
 header {
-  background: #282c34;
-  color: white;
-  padding: 2rem;
   text-align: center;
 }
 
+/* -----------------------------
+   NAVIGATION
+   ----------------------------- */
 nav {
-  background: #444;
-  padding: 0.5rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-nav a {
-  color: white;
-  margin: 0 10px;
+nav a, nav button {
+  text-decoration: none;
+  color: #444;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+nav a:hover, nav button:hover {
+  background: #ddd;
+}
+
+/* -----------------------------
+   FILTERS & SEARCH
+   ----------------------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filters input,
+.filters select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 180px;
+  max-width: 300px;
+}
+
+/* -----------------------------
+   CARDS & POSTS
+   ----------------------------- */
+.project, .card {
+  max-width: 700px;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  background: #fff;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.card h2 a {
+  color: #222;
   text-decoration: none;
 }
 
-section {
-  padding: 2rem;
+.card p, .card .meta {
+  color: #333;
+  margin: 0.5rem 0;
 }
 
-.project {
-  background: #f4f4f4;
-  margin: 1rem 0;
-  padding: 1rem;
-  border-radius: 8px;
+.card .tag-list {
+  margin-top: 0.5rem;
+}
+
+.card .tag {
+  display: inline-block;
+  background: #eee;
+  color: #444;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  margin-right: 0.3rem;
+  margin-top: 0.3rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.card .tag.active {
+  background: #ccc;
+}
+
+/* -----------------------------
+   SINGLE POST
+   ----------------------------- */
+#post {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#post.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#post h1 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+#post .meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+#post .content {
+  margin-top: 1rem;
+  line-height: 1.8;
+}
+
+#post .tag-list {
+  margin-bottom: 1rem;
+}
+
+#post .tag {
+  margin-right: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+/* Title + category flex container */
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* wrap if screen is small */
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Adjust category styling */
+.category-title {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Different category colors */
+.category-title.life { background: #ffcccc; color: #900; }
+.category-title.garden { background: #ccffcc; color: #090; }
+.category-title.recipe { background: #ccccff; color: #009; }
+.category-title.project { background: #eee; color: #333; }
+
+
+/* -----------------------------
+   DARK MODE
+   ----------------------------- */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark header,
+body.dark section,
+body.dark footer {
+  color: #eee;
+}
+
+body.dark nav {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+body.dark nav a,
+body.dark nav button {
+  background: #333;
+  color: #eee;
+}
+
+body.dark nav a:hover,
+body.dark nav button:hover {
+  background: #444;
+}
+
+body.dark .filters input,
+body.dark .filters select {
+  background: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+/* CARDS & SINGLE POST IN DARK MODE */
+body.dark .project,
+body.dark .card,
+body.dark #post {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+body.dark .card h2 a,
+body.dark #post h1 {
+  color: #fff;
+}
+
+body.dark .card p,
+body.dark .card .meta,
+body.dark #post .meta,
+body.dark #post .content {
+  color: #ddd;
+}
+
+/* TAGS IN DARK MODE */
+body.dark .card .tag,
+body.dark #post .tag {
+  background: #333;
+  color: #fff;
+}
+
+body.dark .card .tag.active,
+body.dark #post .tag.active {
+  background: #555;
+}
+
+body.dark .card .tag:hover,
+body.dark #post .tag:hover {
+  background: #666;
+}
+
+/* LINKS INSIDE POST CONTENT */
+body.dark .card .content a,
+body.dark #post .content a {
+  color: #1e90ff;
+  text-decoration: underline;
+}
+
+/* DARK MODE COLORS */
+body.dark .category-title { color: #fff; }
+body.dark .category-title.life { background: #ff7f5055; }
+body.dark .category-title.recipe    { background: #1e90ff55; }
+body.dark .category-title.garden    { background: #28a74555; }
+
+/* -----------------------------
+   FOOTER
+   ----------------------------- */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+body.dark footer {
+  color: #aaa;
+}
+
+/* -----------------------------
+   ANIMATIONS FOR CARDS (BLOG PAGE)
+   ----------------------------- */
+.card.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------
+   LINKS
+   ----------------------------- */
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 footer {
   text-align: center;
-  padding: 1rem;
-  background: #ddd;
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+body.dark footer {
+  color: #aaa;
 }
