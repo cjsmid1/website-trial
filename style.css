@@ -83,6 +83,13 @@ nav a:hover, nav button:hover {
   transition: background 0.3s, box-shadow 0.3s;
 }
 
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
 .card h2 a {
   color: #222;
   text-decoration: none;
@@ -150,6 +157,11 @@ nav a:hover, nav button:hover {
   line-height: 1.8;
 }
 
+#post .content ul {
+  margin-top: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
 #post .tag-list {
   margin-bottom: 1rem;
 }
@@ -184,6 +196,86 @@ nav a:hover, nav button:hover {
 .category-title.recipe { background: #ccccff; color: #009; }
 .category-title.project { background: #eee; color: #333; }
 
+/* Post ingredient organiser */
+.ingredient-section {
+  font-weight: 700;          /* bolder */
+  font-size: 0.95rem;
+  margin: 0.6rem 0 0.2rem;   /* tighter spacing */
+  letter-spacing: 0.03em;    /* subtle polish */
+  opacity: 0.85;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+
+/* Reset + remove default numbering */
+.instructions {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 1.8rem;
+}
+
+/* Normal steps */
+.instructions li:not(.section-title) {
+  counter-increment: step;
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+
+/* Number circles ONLY for real steps */
+.instructions li:not(.section-title)::before {
+  content: counter(step);
+  position: absolute;
+  left: -1.8rem;
+  top: 0.25em;
+
+  background: #eee;
+  color: #222;
+  border-radius: 50%;
+  width: 1.4rem;
+  height: 1.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  
+  transition: transform 0.15s ease;
+}
+
+.instructions li:hover::before {
+  transform: scale(1.1);
+}
+
+.section-title {
+  counter-increment: none;   /* 🚫 do NOT count */
+  list-style: none;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.post-image {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.post-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.post-image figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  font-style: italic;
+}
 
 /* -----------------------------
    DARK MODE
@@ -271,6 +363,26 @@ body.dark .category-title { color: #fff; }
 body.dark .category-title.life { background: #ff7f5055; }
 body.dark .category-title.recipe    { background: #1e90ff55; }
 body.dark .category-title.garden    { background: #28a74555; }
+
+body.dark p.ingredient-section {
+  opacity: 1;
+  color: #fff;
+}
+
+body.dark .instructions li:not(.section-title)::before {
+  background: #333;
+  color: #fff;
+}
+
+body.dark .section-title {
+  opacity: 1;
+  color: #fff;
+}
+
+body.dark .post-image figcaption {
+  color: #ccc;
+  opacity: 0.8;
+}
 
 /* -----------------------------
    FOOTER
