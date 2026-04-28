@@ -17,7 +17,48 @@ header, nav, section, footer {
 }
 
 header {
-  text-align: center;
+  max-width: 700px;
+  margin: 2rem auto;   /* centers it like your cards */
+  padding: 3rem 1.5rem;
+
+  border-radius: 12px;
+  overflow: hidden;    /* keeps background inside rounded corners */
+
+  background: url("images/echo-hello.jpg") center/cover no-repeat;
+  position: relative;
+  text-align: left;
+  color: white;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  background-color: #000; /* fallback while image loads */
+  transition: transform 0.2s ease;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* adjust darkness here */
+}
+
+header h1,
+header p {
+  position: relative;
+  z-index: 1;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+header:hover {
+  transform: translateY(-2px);
 }
 
 /* -----------------------------
@@ -196,6 +237,15 @@ nav a:hover, nav button:hover {
 .category-title.recipe { background: #ccccff; color: #009; }
 .category-title.project { background: #eee; color: #333; }
 
+h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+p, ul {
+  margin-top: 0.1rem;
+}
+
 /* Post ingredient organiser */
 .ingredient-section {
   font-weight: 700;          /* bolder */
@@ -277,6 +327,362 @@ nav a:hover, nav button:hover {
   font-style: italic;
 }
 
+.small-post-image {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 0.8rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.small-post-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.small-post-image figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  font-style: italic;
+  text-align: center;
+}
+
+.chaos-list {
+  display: flex;
+  flex-wrap: wrap;        /* ⭐ allows horizontal wrapping */
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  margin-top: 0.25rem;
+}
+
+.chaos-list + p {
+  margin-top: 1.5rem;
+}
+
+.chaos-list li {
+  list-style: none;
+  display: inline-block;  /* shrink to content */
+  width: auto;
+
+  background: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  margin: -0.2rem 0.3rem; /* ⭐ overlap vertically */
+  
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  font-size: 0.85rem;
+  white-space: nowrap;
+
+  position: relative;
+  transition: transform 0.2s ease, z-index 0.2s ease;
+}
+
+.chaos-list li {
+  z-index: 1;
+}
+
+.chaos-list li:nth-child(odd) {
+  transform: rotate(-2deg) translateY(2px);
+}
+
+.chaos-list li:nth-child(even) {
+  transform: rotate(2deg) translateY(-2px);
+}
+
+.chaos-list li:nth-child(3n) {
+  transform: rotate(-1deg) translateY(3px);
+}
+
+.chaos-list li:hover {
+  z-index: 999;
+  transform: scale(1.15) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.qa-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;              /* more breathing room */
+  justify-content: flex-start; /* less “centered grid” feel */
+  margin: 3rem 0;
+  justify-content: center;
+}
+
+.qa-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 1.5rem 1.2rem 1.2rem;
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #fdfdfd
+  );
+
+  /* softer, thinner border */
+  border: 1.2px solid rgba(0, 0, 0, 0.6);
+
+  /* gentle organic shape */
+  border-radius: 18px 16px 20px 17px;
+
+  /* subtle “ink wobble” instead of heavy outline */
+  box-shadow:
+    0.5px 0.5px 0 rgba(0,0,0,0.25),
+    0 6px 18px rgba(0,0,0,0.06);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qa-card:nth-child(odd) {
+  transform: rotate(-0.7deg);
+}
+
+.qa-card:nth-child(even) {
+  transform: rotate(0.7deg);
+}
+
+.qa-card:nth-child(3n) {
+  transform: rotate(0.3deg) translateY(3px);
+}
+
+.qa-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.qa-label {
+  position: absolute;
+  top: -12px;
+  left: 14px;
+
+  padding: 0.15rem 0.7rem;
+  background: #fff;
+
+  border: 1.2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  transform: rotate(-0.4deg);
+}
+
+.dog-review {
+  padding: 1.5rem 1.5rem 1.5rem 200px; /* 👈 space for image */
+
+  background: #fafafa;
+  border: 1px dashed rgba(0,0,0,0.2);
+  border-radius: 12px;
+
+  max-width: 700px;
+  margin: 2rem auto;
+  position: relative;
+  margin-top: 0.75rem;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dog-title {
+  position: absolute;
+  top: -10px;
+  left: 40px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  background: #fff;
+  padding: 0.3rem 0.8rem;
+
+  border: 1px solid rgba(0,0,0,0.6);
+  border-radius: 6px;
+
+  transform: rotate(-6deg);
+
+  box-shadow: 1px 2px 0 rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+.dog-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.dog-image img {
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.dog-columns {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  align-items: stretch; /* ⭐ makes image match height */
+  flex-wrap: wrap;
+  font-family: "Comic Sans MS", "Bradley Hand", cursive;
+}
+
+.dog-good,
+.dog-bad {
+  flex: 0.8;
+  min-width: 140px;
+
+  padding: 0.8rem;
+
+  border: 1px dashed rgba(0,0,0,0.2);
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.6);
+  position: relative;
+}
+.dog-good{
+	transform: rotate(-2deg);
+	margin-top: 0;
+}
+.dog-bad{
+	transform: rotate(2deg);
+}
+
+.dog-columns h4 {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+
+.dog-columns ul {
+  list-style: none;
+  padding-left: 0.5rem;
+  margin: 0;
+}
+
+.dog-columns li {
+  position: relative;
+  margin: 0.5rem 0;
+  padding-left: 1.4rem;
+
+  transform: rotate(-0.5deg);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* paw-style bullet */
+.dog-columns li::before {
+  content: "🐾";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  font-size: 0.9rem;
+  transform: rotate(20deg);
+  opacity: 0.8;
+  filter: contrast(1.1);
+}
+
+/* variation = less robotic */
+.dog-columns li:nth-child(odd) {
+  transform: rotate(0.6deg) translateX(4px);
+}
+
+.dog-columns li:nth-child(2n) {
+  transform: rotate(-1deg) translateX(-3px);
+}
+
+
+.dog-columns li.loud {
+  text-transform: uppercase;
+}
+
+.dog-columns li.sad {
+  opacity: 0.6;
+}
+
+.dog-columns li.big {
+  font-size: 1.1rem;
+}
+
+.dog-good::after,
+.dog-bad::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  background: rgba(0,0,0,0.06);
+  filter: blur(5px);
+  border-radius: 50%;
+  bottom: 10%;
+  right: 10%;
+}
+
+
+
+.photo-collage {
+  column-count: 2;
+  column-gap: 1rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  margin-top: 0;
+}
+
+.photo-collage img {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.collage-caption {
+  max-width: 700px;
+  margin: 0.5rem auto 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: -2rem;
+}
+
+/* Hover effect */
+.photo-collage img:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Make sure hovered image appears above others */
+.photo-collage img {
+  position: relative;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .photo-collage {
+    column-count: 2;
+  }
+}
+
+
+
+
 /* -----------------------------
    DARK MODE
    ----------------------------- */
@@ -334,6 +740,18 @@ body.dark #post .content {
   color: #ddd;
 }
 
+body.dark .chaos-list li {
+  background: #1e1e1e;
+  color: #eee;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.dark .chaos-list li:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  background: #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
 /* TAGS IN DARK MODE */
 body.dark .card .tag,
 body.dark #post .tag {
@@ -382,6 +800,71 @@ body.dark .section-title {
 body.dark .post-image figcaption {
   color: #ccc;
   opacity: 0.8;
+}
+
+body.dark .small-post-image {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+body.dark .small-post-image figcaption {
+  color: #ccc;
+  opacity: 0.8;
+}
+
+.dark .qa-card {
+  background: linear-gradient(
+    to bottom,
+    #1c1c1c,
+    #181818
+  );
+
+  border: 1.2px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 18px 16px 20px 17px;
+
+  box-shadow:
+    0.5px 0.5px 0 rgba(255,255,255,0.08),
+    0 8px 22px rgba(0,0,0,0.6);
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .qa-label {
+  background: #1c1c1c;
+
+  border: 1.2px solid rgba(255, 255, 255, 0.25);
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dark .answer {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.dark .dog-review {
+  background: #1a1a1a;
+  border: 1px dashed rgba(255,255,255,0.2);
+}
+
+.dark .dog-title {
+  background: #1a1a1a;
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+}
+
+.dark .dog-good,
+.dark .dog-bad {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.2);
+}
+
+body.dark .dog-columns li::before {
+  opacity: 0.95;
+}
+
+body.dark .photo-collage img {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
 }
 
 /* -----------------------------

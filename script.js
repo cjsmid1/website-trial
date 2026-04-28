@@ -42,6 +42,15 @@ if (categoryFilter) {
 }
 
 // -----------------------------
+// FORMAT TAGS
+// -----------------------------
+function formatTag(tag) {
+  return tag
+    .replace(/-/g, " ")              // replace hyphens with spaces
+    .replace(/\b\w/g, c => c.toUpperCase()); // capitalise each word
+}
+
+// -----------------------------
 // RENDER BLOG POSTS
 // -----------------------------
 function renderPosts(filteredPosts) {
@@ -63,7 +72,7 @@ function renderPosts(filteredPosts) {
   <div class="tag-list">
     ${post.tags.map(tag => `
       <span class="tag ${tag === activeTag ? "active" : ""}" data-tag="${tag}">
-        ${tag}
+        ${formatTag(tag)}
       </span>
     `).join("")}
   </div>
@@ -159,7 +168,7 @@ if (postContainer) {
   </div>
   <div class="tag-list">
     ${post.tags.map(tag => `
-      <span class="tag" data-tag="${tag}">${tag}</span>
+      <span class="tag" data-tag="${tag}">${formatTag(tag)}</span>
     `).join("")}
   </div>
   <div class="content">${post.content}</div>
@@ -180,6 +189,22 @@ if (postContainer) {
     });
   }
 }
+
+document.querySelectorAll(".chaos-list li").forEach(el => {
+  const rotate = (Math.random() * 6) - 3;
+  const yShift = (Math.random() * 6) - 3;
+  const size = 0.95 + Math.random() * 0.25; // 0.95 → 1.10
+
+  el.dataset.rotate = rotate;
+  el.dataset.y = yShift;
+
+  el.style.transform = `
+    rotate(${rotate}deg)
+    translateY(${yShift}px)
+    scale(${size})
+  `;
+
+});
 
 // -----------------------------
 // FUNCTION TO GO TO TAG (USED IN SINGLE POST)
