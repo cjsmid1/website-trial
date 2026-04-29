@@ -12,21 +12,68 @@ const categoryFilter = document.getElementById("categoryFilter");
 const postContainer = document.getElementById("post");
 
 // -----------------------------
-// DARK MODE
+// DARK MODE + ICON SWAP
 // -----------------------------
-const toggleBtn = document.getElementById("themeToggle");
-
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
+function getTheme() {
+  return localStorage.getItem("theme") || "light";
 }
 
-toggleBtn?.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
-  );
+function applyTheme() {
+  const isDark = getTheme() === "dark";
+
+  document.documentElement.classList.toggle("dark", isDark);
+
+  const btn = document.querySelector("#themeToggle");
+  if (!btn) return;
+
+  btn.dataset.mode = isDark ? "dark" : "light";
+}
+
+function toggleTheme() {
+  const isDark = !document.documentElement.classList.contains("dark");
+  document.documentElement.classList.toggle("dark", isDark);
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("#themeToggle");
+  if (!btn) return;
+
+  toggleTheme();
 });
+
+
+// -----------------------------
+// NAVIGATION
+// -----------------------------
+function loadNavigation() {
+  if (document.body.dataset.navLoaded === "true") return;
+
+  document.body.dataset.navLoaded = "true";
+
+  const navigationHTML = `
+    <nav class="nav">
+      <div class="nav-box">
+        
+        <div class="nav-left">
+          <a href="about.html">About</a>
+          <a href="index.html#experiments">Experiments</a>
+        </div>
+    
+        <a class="nav-logo" href="index.html">
+          <img src="images/soft-alchemy-title.png" alt="Soft Alchemy">
+        </a>
+    
+        <div class="nav-right">
+          <a href="blog.html">Archive</a>
+          <a href="about.html#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  `;
+  document.body.insertAdjacentHTML('afterbegin', navigationHTML);
+}
+
 
 // -----------------------------
 // POPULATE CATEGORY FILTER
@@ -216,10 +263,26 @@ function goToTag(tag) {
 function loadFooter() {
   const footerHTML = `
     <footer>
-      <p>© Claire Smid | Built with Tea and Puppy Distractions 🐾</p>
+      <p class="footer-meta">
+	    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="icon sun">☀️</span>
+          <span class="icon moon">🌙</span>
+        </button>
+         <span>© Soft Alchemy | Built with Tea and Puppy Distractions 🐾</span>
+	  </p>
     </footer>
   `;
   document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
-loadFooter();
+document.addEventListener("DOMContentLoaded", () => {
+  loadNavigation();
+  loadFooter();
+  applyTheme();
+
+  // force correct icon state after insertion
+  document.documentElement.classList.toggle(
+    "dark",
+    getTheme() === "dark"
+  );
+});

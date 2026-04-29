@@ -1,9 +1,14 @@
 /* =============================
    BASE LAYOUT
    ============================= */
+html {
+  background: #f9f9f9;
+  min-height: 100%;
+}
+
 body {
   font-family: "Segoe UI", sans-serif;
-  background: #f9f9f9;
+  background: transparent;
   color: #222;
   line-height: 1.6;
   margin: 0;
@@ -61,33 +66,146 @@ header:hover {
   transform: translateY(-2px);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eee;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  overflow: hidden;
+}
+
+.theme-toggle .icon {
+  position: absolute;
+  font-size: 1.1rem;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* default state (light mode) */
+.theme-toggle .sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+.theme-toggle .moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
 /* -----------------------------
    NAVIGATION
    ----------------------------- */
 nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  background: white;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 0;
+  padding-top: 1rem;
+  background: transparent
 }
 
 nav a, nav button {
   text-decoration: none;
   color: #444;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 6px;
   border: none;
   background: #eee;
   cursor: pointer;
+
+  height: 36px;
+  display: flex;
+  align-items: center;
 }
 
 nav a:hover, nav button:hover {
   background: #ddd;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: transparent;
+}
+
+.nav-box {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  border: 1px solid rgba(0,0,0,0.3); 
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(6px);
+
+  height: 50px;
+  padding: 0 4rem;
+
+  position: relative;
+  overflow: visible;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  flex: 0 1 auto;
+  min-width: 0; /* 🔑 prevents weird collapse */
+}
+
+.nav-left {
+  justify-content: flex-start;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-box a {
+  text-decoration: none;
+  color: #222;
+  font-size: 0.9rem;
+  overflow: visible;
+  
+}
+
+.nav-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -40%);
+
+  display: flex;
+  align-items: center;
+
+  z-index: 10;
+
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.nav-logo img {
+  height: 110px; /* or whatever “overhang” you want */
+  display: block;
+  transform: rotate(-2deg);
 }
 
 /* -----------------------------
@@ -215,20 +333,28 @@ nav a:hover, nav button:hover {
 /* Title + category flex container */
 .title-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  flex-wrap: wrap; /* wrap if screen is small */
+  flex-wrap: nowrap;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.title-row h1 {
+  flex: 1;
 }
 
 /* Adjust category styling */
 .category-title {
   display: inline-block;
   padding: 0.2rem 0.5rem;
+  margin-left: 0.5rem;
   border-radius: 6px;
+  
   font-weight: 600;
   font-size: 0.9rem;
+  flex-shrink: 0;
+  
 }
 
 /* Different category colors */
@@ -686,128 +812,158 @@ p, ul {
 /* -----------------------------
    DARK MODE
    ----------------------------- */
-body.dark {
+html.dark {
   background: #121212;
   color: #eee;
 }
 
-body.dark header,
-body.dark section,
-body.dark footer {
+html.dark header,
+html.dark section,
+html.dark footer {
   color: #eee;
 }
 
-body.dark nav {
-  background: #1e1e1e;
+html.dark .theme-toggle {
+  background: #2a2a2a;
+}
+
+html.dark .theme-toggle .sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+html.dark .theme-toggle .moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+html.dark nav {
   box-shadow: none;
 }
 
-body.dark nav a,
-body.dark nav button {
-  background: #333;
-  color: #eee;
+html.dark nav a,
+html.dark nav button {
+  color: #e6e6e6;
+  background: #2a2a2a;
 }
 
-body.dark nav a:hover,
-body.dark nav button:hover {
-  background: #444;
+html.dark nav a:hover,
+html.dark nav button:hover {
+  background: #3a3a3a;
 }
 
-body.dark .filters input,
-body.dark .filters select {
+html.dark .nav-box {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+html.dark .nav-box a {
+  color: #f2f2f2;
+}
+
+html.dark .nav-logo img {
+  filter: invert(1) brightness(1.2);
+}
+
+html.dark .filters input,
+html.dark .filters select {
   background: #333;
   color: #eee;
   border: 1px solid #555;
 }
 
 /* CARDS & SINGLE POST IN DARK MODE */
-body.dark .project,
-body.dark .card,
-body.dark #post {
+html.dark .project,
+html.dark .card,
+html.dark #post {
   background: #1e1e1e;
   box-shadow: none;
 }
 
-body.dark .card h2 a,
-body.dark #post h1 {
+html.dark .card h2 a,
+html.dark #post h1 {
   color: #fff;
 }
 
-body.dark .card p,
-body.dark .card .meta,
-body.dark #post .meta,
-body.dark #post .content {
+html.dark .card p,
+html.dark .card .meta,
+html.dark #post .meta,
+html.dark #post .content {
   color: #ddd;
 }
 
-body.dark .chaos-list li {
+html.dark .chaos-list li {
   background: #1e1e1e;
   color: #eee;
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-body.dark .chaos-list li:hover {
+html.dark .chaos-list li:hover {
   box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   background: #2a2a2a;
   border: 1px solid rgba(255,255,255,0.2);
 }
 
 /* TAGS IN DARK MODE */
-body.dark .card .tag,
-body.dark #post .tag {
+html.dark .card .tag,
+html.dark #post .tag {
   background: #333;
   color: #fff;
 }
 
-body.dark .card .tag.active,
-body.dark #post .tag.active {
+html.dark .card .tag.active,
+html.dark #post .tag.active {
   background: #555;
 }
 
-body.dark .card .tag:hover,
-body.dark #post .tag:hover {
+html.dark .card .tag:hover,
+html.dark #post .tag:hover {
   background: #666;
 }
 
 /* LINKS INSIDE POST CONTENT */
-body.dark .card .content a,
-body.dark #post .content a {
+html.dark .card .content a,
+html.dark #post .content a {
   color: #1e90ff;
   text-decoration: underline;
 }
 
 /* DARK MODE COLORS */
-body.dark .category-title { color: #fff; }
-body.dark .category-title.life { background: #ff7f5055; }
-body.dark .category-title.recipe    { background: #1e90ff55; }
-body.dark .category-title.garden    { background: #28a74555; }
+html.dark .category-title { color: #fff; }
+html.dark .category-title.life { background: #ff7f5055; }
+html.dark .category-title.recipe    { background: #1e90ff55; }
+html.dark .category-title.garden    { background: #28a74555; }
 
-body.dark p.ingredient-section {
+html.dark p.ingredient-section {
   opacity: 1;
   color: #fff;
 }
 
-body.dark .instructions li:not(.section-title)::before {
+html.dark .instructions li:not(.section-title)::before {
   background: #333;
   color: #fff;
 }
 
-body.dark .section-title {
+html.dark .section-title {
   opacity: 1;
   color: #fff;
 }
 
-body.dark .post-image figcaption {
+html.dark .post-image figcaption {
   color: #ccc;
   opacity: 0.8;
 }
 
-body.dark .small-post-image {
+html.dark .small-post-image {
   background: #1e1e1e;
   box-shadow: none;
 }
 
-body.dark .small-post-image figcaption {
+html.dark .small-post-image figcaption {
   color: #ccc;
   opacity: 0.8;
 }
@@ -859,11 +1015,11 @@ body.dark .small-post-image figcaption {
   border-color: rgba(255,255,255,0.2);
 }
 
-body.dark .dog-columns li::before {
+html.dark .dog-columns li::before {
   opacity: 0.95;
 }
 
-body.dark .photo-collage img {
+html.dark .photo-collage img {
   box-shadow: 0 5px 15px rgba(0,0,0,0.6);
 }
 
@@ -878,7 +1034,7 @@ footer {
   color: #666;
 }
 
-body.dark footer {
+html.dark footer {
   color: #aaa;
 }
 
@@ -916,8 +1072,16 @@ footer {
   padding: 1rem 1rem;
   font-size: 0.9rem;
   color: #666;
+  display: flex;
+  justify-content: center;
 }
 
-body.dark footer {
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* space between button and text */
+}
+
+html.dark footer {
   color: #aaa;
 }
