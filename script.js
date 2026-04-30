@@ -268,7 +268,7 @@ function loadFooter() {
           <span class="icon sun">☀️</span>
           <span class="icon moon">🌙</span>
         </button>
-         <span>© Soft Alchemy | Built with Tea and Puppy Distractions 🐾</span>
+        Soft Alchemy | Built with Tea and Puppy Distractions 🐾
 	  </p>
     </footer>
   `;
