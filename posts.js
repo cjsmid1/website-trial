@@ -6,7 +6,7 @@ const posts = [
     tags: ["dinner-party", "fish"],
     excerpt: "The time I discovered Pierogi, and then decided I wanted tuna instead...",
     content: `
-      <img src="images/tuna-sweetcorn-dumplings.jpg" alt="Nice view">
+      <img class="card-image" src="images/tuna-sweetcorn-dumplings.jpg" alt="Nice view">
 	  <p><b>TLDR:</b> Polish dumplings meet tuna sweetcorn filling, very moreish! Time consuming but worth it, makes around 30 depending on size & they freeze well for batch cooking.<br>Recipe inspired by <a href="https://www.recipetineats.com/pierogi-ruskie-polish-dumplings/">Pierogi Ruskie Polish Dumplings</a></p>
 	  <h2>Ingredients</h2>
 	  <p class="ingredient-section">Dough:</p>
@@ -45,8 +45,11 @@ const posts = [
 		<li class="section-title">Assembly and Cook:</li>
 		<li>Roll out the dough on floured surface & cut out circles (can use a mug or any circular object - I used roughly 3 inch diameter)</li>
 		<li>Repeat with the scraps until you have as many identical circles as possible</li>
-		<li>Place 1-2 tsp filling in the centre of the circle, brush the edge with water & fold in half using your fingers as indents to seal (we overfilled the first few as we were learning how best to shape them, so better to start with 1 tsp and build up)
-		<br>➤ Freeze any you don't want to eat at this point! ❄️</li>
+		<li>
+          Place 1–2 tsp filling in the centre of the circle, brush the edge with water & fold in half using your fingers as indents to seal.
+          <br>
+          ➤ Freeze any you don't want to eat at this point! ❄️
+        </li>
 		<li>Bring a large pan of water to the boil and place the dumplings in a few at a time. Cook until they float (~5 minutes)</li>
 		<li>(Optional) pan fry in melted butter for a crispy texture <br>(the onion butter sauce from the inspirational recipe is also great)</li>
 		<li>Serve with your pick of melted butter over the top, parsley/chives, crispy onions (always a favourite) or some chopped spring onions, alongside a dip of your choice</li>
@@ -59,14 +62,15 @@ const posts = [
     id: "echo-first-birthday",
     title: "🎂 Do Dog Birthdays Count?",
     category: "Life",
-    tags: ["dog", "everyday life", "cake"],
+    tags: ["dog-approved", "recommendation", "dog recipe"],
     excerpt: "The time my puppy turned one and got very spoiled...",
     content: `
-	<p><b>TLDR:</b> Echo had his first birthday, <a href="#wisley">RHS Wisley gardens</a> do a dog event, he also got <a href="#ice-cream">dog ice cream</a> and his own <a href="#birthday-cake">birthday cake</a>!<br>
+	<p><b>TLDR:</b> Echo had his first birthday, <a href="#wisley">RHS Wisley gardens</a> do a dog event, he also got <a href="#ice-cream">dog ice cream</a> and his own <a href="#birthday-cake">birthday cake</a>!</p>
+	<br>
 	<p>
 	It turns out for me dog birthdays definitely count. While I won't go as far as to organise a full on birthday party, it is a wonderful excuse to crack out the dog cookbook I got for christmas and give the dog approved birthday cake recipe a go. It is also the perfect excuse to upgrade the usual walk... 
 	<h3 id="wisley">Exploring Wisley Gardens</h3>
-	<img src="images/echo-wisley.jpg" alt="Nice view">
+	<img class="card-image" src="images/echo-wisley.jpg" alt="Nice view">
 	<p>For those of you who live close enough to be interested: yes there is a special event <a href="https://www.rhs.org.uk/gardens/wisley/whats-on/walkies-at-wisley">Walkies at Wisley</a> where you can bring your favourite furry friends along to enjoy the beautiful scenery.
 	</p>
 	<p> Wisley Mini Review - the good: </p>
@@ -207,6 +211,7 @@ const posts = [
     tags: ["bread", "vegan", "vegetarian"],
     excerpt: "The time I joined the 30 year old woman bandwagon and made sourdough bread...",
     content: `
+	  <img class="card-image" src="images/sourdough-slices.jpg" alt="Nice view">
 	  <p><b>TLDR:</b> Sourdough is epic and surprisingly less effort than traditional bread as it requires minimal kneading! I make mine over a 2 day period so heads up, it does take patience and some preplanning. Also note you don't need special equipment to make good bread: I use my hands, a bowl, weighing scales & my glass caserole dish - that's it!</h2>
       <h2>Ingredients</h2>
 	  <ul>
@@ -256,7 +261,7 @@ const posts = [
     tags: ["dinner-party", "vegetarian"],
     excerpt: "The time I took a beef wellington, turned it vegetarian and sent it off to Asia...",
     content: `
-      <img src="images/mushroom-wellington-puff.jpg" alt="Nice view">
+      <img class="card-image" src="images/mushroom-wellington-puff.jpg" alt="Nice view">
 	  <p><b>TLDR:</b> Great pastry centre piece for a roast, I fed 7 people and had left over filling for sandwiches so feel free to half the recipe if desired. Be sure to leave enough time as the recipe includes some cooling steps and 20 minutes in the fridge before final bake!</p>
 	  <h2>Ingredients</h2>
 	  <p class="ingredient-section">Filling:</p>
@@ -333,6 +338,8 @@ const posts = [
     category: "Life",
     tags: ["reflection", "goals"],
     excerpt: "What I want to explore during my time off...",
-    content: `<p>This is a season of growth, curiosity, and space...</p>`
+    content: `<p>The plan is a lie, as is this post.
+	<br>
+	I use it as a shameless template, who knows maybe one day I'll actually fill in the details 😅</p>`
   }
 ];
