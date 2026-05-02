@@ -224,13 +224,18 @@ nav a:hover, nav button:hover {
   border: none !important;
   padding: 0 !important;
   box-shadow: none !important;
+  
+  mix-blend-mode: multiply;
 }
 
 .nav-logo img {
   height: 110px; /* or whatever “overhang” you want */
   display: block;
   transform: rotate(-2deg);
+  z-index: 10;
 }
+
+
 
 @media (max-width: 600px) {
   .nav {
@@ -418,6 +423,11 @@ nav a:hover, nav button:hover {
   vertical-align: middle;
   transform: translateY(3px) rotate(-1deg);
   margin-bottom: 0.8rem;
+}
+
+.ink-video {
+  mix-blend-mode: multiply;
+  background: transparent;
 }
 
 .bio {
@@ -1091,6 +1101,10 @@ html.dark .theme-toggle .moon {
   transform: rotate(-90deg) scale(0.6);
 }
 
+html.dark .handwriting img {
+  filter: invert(1) brightness(1.2);
+}
+
 html.dark nav {
   box-shadow: none;
 }
@@ -1117,6 +1131,10 @@ html.dark .nav-box {
 
 html.dark .nav-box a {
   color: #f2f2f2;
+}
+
+html.dark .nav-logo {
+  mix-blend-mode: normal;
 }
 
 html.dark .nav-logo img {

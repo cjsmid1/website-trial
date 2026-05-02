@@ -47,23 +47,20 @@ document.addEventListener("click", (e) => {
 // NAVIGATION
 // -----------------------------
 function loadNavigation() {
-  if (document.body.dataset.navLoaded === "true") return;
-
-  document.body.dataset.navLoaded = "true";
+  if (document.querySelector(".nav")) return;
 
   const navigationHTML = `
     <nav class="nav">
       <div class="nav-box">
-        
         <div class="nav-left">
           <a href="about.html">About</a>
           <a href="index.html#experiments">Experiments</a>
         </div>
-    
+
         <a class="nav-logo" href="index.html">
-          <img src="images/soft-alchemy-title.png" alt="Soft Alchemy">
+          <img id="alchemyLogo" src="images/writing-soft-alchemy.gif" alt="Soft Alchemy">
         </a>
-    
+
         <div class="nav-right">
           <a href="blog.html">Archive</a>
           <a href="about.html#contact">Contact</a>
@@ -71,7 +68,8 @@ function loadNavigation() {
       </div>
     </nav>
   `;
-  document.body.insertAdjacentHTML('afterbegin', navigationHTML);
+
+  document.body.insertAdjacentHTML("afterbegin", navigationHTML);
 }
 
 
@@ -277,6 +275,14 @@ function loadFooter() {
 
 document.addEventListener("DOMContentLoaded", () => {
   loadNavigation();
+  
+  const logo = document.getElementById("alchemyLogo");
+  if (logo) {
+    setTimeout(() => {
+      logo.src = "images/soft_alchemy_final_frame.png";
+    }, 5700);
+  }
+  
   loadFooter();
   applyTheme();
 
