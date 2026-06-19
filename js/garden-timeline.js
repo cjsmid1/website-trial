@@ -347,7 +347,7 @@ const gardenTimeline = [
     tags: ["aubergine", "mushroom"],
     title: "This is just getting insulting",
     image: "/images/garden/mushroom-with-aubergine-06-2026.jpeg",
-    imageSize: "square",
+    imageSize: "portrait",
     text: "Left: almost three month old aubergine sapling.<br>Right: Overnight mushroom."
   },
   {
@@ -358,5 +358,27 @@ const gardenTimeline = [
     image: "/images/garden/berry-protection-06-2026.png",
     imageSize: "square",
     text: "When the simple netting plan become a chicken-wire Fort Knox."
+  },
+  {
+    date: "2026-06-10",
+    type: "photo",
+    tags: ["strawberry", "raspberry"],
+    image: "/images/garden/raspberry-fruit-06-2026.jpeg",
+    imageSize: "landscape",
+    text: "The anti-bird cage appears to be working. Multiple raspberries are ready for snacking, and the strawberry plants are producing their first replacement flower.",
+  },
+  {
+    date: "2026-06-12",
+    type: "note",
+    tags: ["basil"],
+    title: "Basil confessions",
+    text: "After the disastrous basil seedling hardening attempt, I gave up and bought six herb plugs. Once potted up and gently(ish) acclimatised in weather that wasn't actively trying to kill them, they joined the tomatoes outside permanently, hours before being abandoned to fend for themselves.",
+  },
+  {
+    date: "2026-06-19",
+    type: "note",
+    tags: ["basil", "tomato", "spring-onion", "bean", "blueberry"],
+    title: "Holiday Abandonment:<br>The Verdict",
+    text: "No, of course it didn't rain while I was away for a week. That would have been far too convenient.<br>The results are in:<br>- Death = 1 (the final basil seedling grown from seed has now officially joined its siblings in the afterlife).<br>- The first tomato plant has flowered! With buds appearing on several others, it seems the tomatoes have forgiven my lack of 24/7 supervision, and the ollas were sufficient to tide them over.<br>- The spring onion trough shows no sign of life other than the occasional collapsed mushroom. Meanwhile, the climbing beans don't even manage that.<br>- The blueberry bush has acquired  an unexpected neighbour larger than itself. Serious culling may be required, as there's only so much room in an abandoned food waste bin.</li></ul>",
   },
 ];

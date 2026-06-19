@@ -133,10 +133,16 @@
 }
 
 .timeline-lightbox-image {
-  max-width: min(96vw, 1200px);
-  max-height: 90vh;
+  display: block;
+    max-width: 96vw;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: auto;
 
-  object-fit: contain;
+  
+
 
   border-radius: 1rem;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -166,9 +172,10 @@
 
 .timeline-lightbox-content {
   position: relative;
-  width: fit-content;
-  max-width: min(96vw, 1200px);
-  max-height: 90vh;
+    width: fit-content;
+    max-width: 96vw;
+    max-height: 90vh;
+    margin: auto;
 }
 
 .timeline-thread-layer {

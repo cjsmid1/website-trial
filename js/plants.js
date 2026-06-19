@@ -4,7 +4,7 @@ const featuredResidents = [
   {
     project: "tomato",
     title: "Cherry Tomato",
-    status: "Growing",
+    status: "Flowering",
     author: "Sown 4 Feb 2026",
     image: "/images/garden/tomato-06-2026.jpeg",
   },
@@ -19,7 +19,7 @@ const featuredResidents = [
   {
     project: "basil",
     title: "Sweet Basil",
-    status: "Hardening",
+    status: "Finally Outside",
     author: "Sown 19 Mar 2026",
     image: "/images/garden/basil-06-2026.jpeg",
   },

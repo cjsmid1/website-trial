@@ -15,8 +15,10 @@
   }
 
   header h1 {
-    font-size: clamp(2.9rem, 8vw, 5rem);
-  }
+      font-size: clamp(2rem, 11vw, 3rem);
+      line-height: 1;
+      white-space: nowrap;
+    }
 }
 
 
@@ -53,6 +55,26 @@
 }
 
 @media (max-width: 600px) {
+
+  .card,
+    .project,
+    header {
+      width: auto;
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+    }
+  
+    .two-column-layout {
+      width: auto;
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+    }
+  
+    .two-column-layout .card {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
   #posts {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -189,6 +211,39 @@
     display: none;
   }
 
+         .site-modal {
+           padding: 0.5rem;
+         }
+    
+         .site-modal-frame {
+           width: 100%;
+           max-width: 100%;
+           justify-content: center;
+         }
+    
+         .site-modal .timeline-lightbox-content {
+           width: calc(100vw - 1rem);
+           max-width: calc(100vw - 1rem);
+           margin: 0 auto;
+           padding: 0;
+         }
+    
+         .site-modal .timeline-lightbox-image {
+           width: 100%;
+           max-width: 100%;
+           max-height: calc(100vh - 1rem);
+    
+           object-fit: contain;
+           display: block;
+           margin: 0 auto;
+         }
+    
+         .site-modal .timeline-lightbox-content .site-modal-close {
+           position: absolute;
+           top: 0.5rem;
+           right: 0.5rem;
+         }
+
   .site-modal-footer-nav {
     display: flex;
     justify-content: space-between;
@@ -309,11 +364,6 @@
     margin: -0.15rem 0.12rem;
     font-size: 0.82rem;
   }
-
-  .timeline-month-jump li a {
-    display: block;
-    padding: 0.25rem 0.2rem;
-  }
 }
 
 
@@ -395,6 +445,11 @@
     left: 1rem;
   }
 
+    .timeline-month-jump li a {
+      display: block;
+      padding: 0.25rem 0.2rem;
+    }
+
   .timeline-desktop-columns {
     display: none;
   }
@@ -437,6 +492,7 @@
     border-color: rgba(120, 95, 65, 0.18);
     box-shadow: 0 6px 18px rgba(60, 45, 30, 0.08);
   }
+
 }
 
 @media (max-width: 600px) {

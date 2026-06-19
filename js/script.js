@@ -887,17 +887,6 @@ if (postContainer) {
       });
     });
 
-    postContainer.querySelectorAll(".lightbox-image").forEach((img) => {
-      img.addEventListener("click", () => {
-        openSiteModal(
-          `<img src="${img.src}" alt="${img.alt || ""}" class="timeline-lightbox-image">`,
-          {
-            contentClass: "timeline-lightbox-content"
-          }
-        );
-      });
-    });
-
     renderRelatedPost(post);
     if (id === "quote-page") { initFlyingQuotes(); }
     if (id === "echo-collage") { renderEchoGallery(); }
@@ -1650,6 +1639,18 @@ function openSiteModal(contentHtml, options = {}) {
 
   document.addEventListener("keydown", handleKeydown);
 }
+
+document.addEventListener("click", (e) => {
+  const img = e.target.closest(".lightbox-image");
+  if (!img) return;
+
+  openSiteModal(
+    `<img src="${img.src}" alt="${img.alt || ""}" class="timeline-lightbox-image">`,
+    {
+      contentClass: "timeline-lightbox-content"
+    }
+  );
+});
 
 // -----------------------------
 // PLANT PROFILES
