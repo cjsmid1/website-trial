@@ -30,6 +30,12 @@ jobs:
       - name: Build generated pages
         run: npm run build
 
+      - name: Check generated post pages
+        run: |
+          ls -la
+          ls -la post || true
+          ls -la post/roasted-aubergine || true    
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
