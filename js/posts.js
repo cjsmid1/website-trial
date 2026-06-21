@@ -19,7 +19,7 @@ const sourdoughStarterTimeline = [
 	{
 		date: "2026-03-09",
 		title: "Day 7+: Maturity",
-		text: "After about a week of daily feeding, your sourdough starter is ready to explore the wide world of <a href='/post.html?id=sourdough-bread'>making bread</a>! You should be seeing the starter increase in size after its daily feeding and then partially collapse back down again. Timing your baking to use the starter at peak growth (~4 hours after it's last feeding) will set you up for maximum success."
+		text: "After about a week of daily feeding, your sourdough starter is ready to explore the wide world of <a href='/post/sourdough-bread'>making bread</a>! You should be seeing the starter increase in size after its daily feeding and then partially collapse back down again. Timing your baking to use the starter at peak growth (~4 hours after it's last feeding) will set you up for maximum success."
 	}
 ];
 
@@ -801,7 +801,7 @@ const posts = [
 	  <li>🎧 <b>Reading:</b> I love reading, especially fantasy. Needless to say I'm not overly worried about this part. Having said that, I seem to have an existing to-do item in my backlog to actually read the many physical books gathering dust on the bookshelves, what's more I've had this to-do item for at least 6 years... 😅<br>
 	  While I will happily add the daily commitment to either listen to 10 mins of audiobook or read 10 physical pages, I'm secretly hoping I won't always default to the audiobook and may actually finish a physical book or two!</li>
 	  <br>
-	  <li><img class="emoji" src="/images/medito-logo.png"><b>Meditation:</b> This is where I'm ahead of the game because one of last month's <a href="/post.html?id=growth-areas">growth areas</a> was learning how to meditate! (Yes I might have been paranoid about committing to so many things in the 75 soft challenge and figured I would set myself up for success as much as possible without cheating the system.)<br>
+	  <li><img class="emoji" src="/images/medito-logo.png"><b>Meditation:</b> This is where I'm ahead of the game because one of last month's <a href="/post/growth-areas">growth areas</a> was learning how to meditate! (Yes I might have been paranoid about committing to so many things in the 75 soft challenge and figured I would set myself up for success as much as possible without cheating the system.)<br>
 	  I currently am using the Medito app to follow daily guided meditations in the morning before my first tea (don't underestimate that specific caveat, it's a very powerful motivator for me!). The plan is to aim for 10 minutes with the option to increase or decrease the time as required by the day's commitments.</li>
 	  <br>
 	  <li>🏃🏻‍♀️ <b>Exercise:</b> Ah yes the final boss. Granted I would consider myself reasonably fit, and having a certain fluffball who insists on being walked certainly doesn't hurt when it comes to forcing myself to exercise. However, I want to actually challenge myself rather than just coasting through this on a 45 minute dog walk a day. I've also been wanting to improve my strength based exercise so that I might have visible abs sometime this year, and given bikinis are much better at showing off abs than Christmas jumpers, there's no time like the present to get started! Hence each day I get to take my pick of 45 minutes of the following exercise options:
@@ -1013,7 +1013,7 @@ const posts = [
       <li>Sell Unwanted Clothes on Vinted</li>
       <li>Learn to Meditate</li>
       <li>Tidy the Kitchen</li>
-      <li><a href="/post.html?id=75-soft-challenge">Start 75 Soft Challenge</a></li>
+      <li><a href="/post/75-soft-challenge">Start 75 Soft Challenge</a></li>
       <li>Start the Bookclub Book</li>
     </ul>
 	<p>Before you get overwhelmed, I present the answer: Growth Areas!</p>
@@ -1026,7 +1026,7 @@ const posts = [
 	<p>Others will be a lot more complicated and can include:
 	<ul>
 	<li>Books to read</li> 
-	<li>Things to buy (such as seeds & soil for my <a href="/post.html?id=garden-plan">future garden</a> growth area)</li>
+	<li>Things to buy (such as seeds & soil for my <a href="/post/garden-plan">future garden</a> growth area)</li>
 	<li>General research (though I recommend being careful with this one as it's easy to fall down the "research" rabbit hole and come out the other end of the month wondering what you actually achieved. In short wherever possible be specific!)</li>
 	<li>A list of tasks to do (I tend to keep mine in my monthly spread BuJo style given the growth areas span a month)</li>
 	</ul>
@@ -1086,7 +1086,7 @@ const posts = [
 		<li>10g Salt</li>
       </ul>
 			<p>That's it unless you want to have fun with fillings or flavourings!<br>
-			Don't have a starter yet? <a href="/post.html?id=sourdough-starter">Here's how I made mine.</a></p>
+			Don't have a starter yet? <a href="/post/sourdough-starter">Here's how I made mine.</a></p>
 			<br>
 			<h2>Timeline Overview</h2>
 			<div id="sourdoughBreadTimeline" class="timeline"></div>

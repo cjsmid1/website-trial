@@ -14,7 +14,7 @@ const gardenTimeline = [
     title: "When in doubt, make a plan",
     image: "/images/garden/garden-plan-layout-01-2026.jpg",
     imageSize: "landscape",
-    text: "Supposedly this is a small patio kitchen garden with genuine output. It will feel impressive. It will not feel chaotic... If you keep the pot count remotely realistic.<br><a href='/post.html?id=garden-plan'>See the original garden plan →</a>",
+    text: "Supposedly this is a small patio kitchen garden with genuine output. It will feel impressive. It will not feel chaotic... If you keep the pot count remotely realistic.<br><a href='/post/garden-plan'>See the original garden plan →</a>",
   },
   {
     date: "2026-01-27",
@@ -22,7 +22,7 @@ const gardenTimeline = [
     title: "Break it into tasks",
     image: "/images/garden/garden-plan-tasks-01-2026.jpg",
     imageSize: "square",
-    text: "Spoiler: absolutely none of this happens as planned...<br>Though this did help structure my <a href='/post.html?id=growth-areas'>Gardening Growth Area</a>.",
+    text: "Spoiler: absolutely none of this happens as planned...<br>Though this did help structure my <a href='/post/growth-areas'>Gardening Growth Area</a>.",
   },
   {
     date: "2026-01-29",

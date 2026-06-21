@@ -176,7 +176,7 @@ document.addEventListener("click", (e) => {
   // Echo interruption
   if (roomKey === "interruption") {
     result.innerHTML = `
-      <a class="interest-result echo-interruption" href="/post.html?id=echo-collage">
+      <a class="interest-result echo-interruption" href="/post/echo-collage">
         <h2>
           <img class="emoji" src="/images/paw-print.png" alt="">
           Echo Interruption!
@@ -290,7 +290,7 @@ function createPostPreviewHTML(post, options = {}) {
   return `
     <div class="title-row">
       <h2>
-        <a href="/post.html?id=${post.id}">${post.title}</a>
+        <a href="/post/${post.id}">${post.title}</a>
       </h2>
 
       <div class="category-title ${post.category.toLowerCase()}">
@@ -386,7 +386,7 @@ document.addEventListener("click", (e) => {
   if (e.target.closest(".tag")) return;
   if (e.target.closest("a")) return;
 
-  window.location.href = `/post.html?id=${card.dataset.postId}`;
+  window.location.href = `/post/${card.dataset.postId}`;
 });
 
 document.addEventListener("keydown", (e) => {
@@ -438,7 +438,7 @@ function renderLatestPost(containerId, category = null) {
   container.innerHTML = createPostPreviewHTML(latestPost);
 
   addTagClickHandlers(container, tag => {
-    window.location.href = `archive/index.html?tag=${encodeURIComponent(tag)}`;
+    window.location.href = `/archive/index.html?tag=${encodeURIComponent(tag)}`;
   });
 }
 
@@ -500,7 +500,7 @@ function goToRandomPost(excludeId = null) {
   const randomPost = getRandomPost(excludeId);
   if (!randomPost) return;
 
-  window.location.href = `/post.html?id=${randomPost.id}`;
+  window.location.href = `/post/${randomPost.id}`;
 }
 
 document.addEventListener("click", (e) => {
@@ -523,7 +523,7 @@ function updatePostMetadata(post) {
   const image = post.image
     ? `https://softalchemy.uk/${post.image.replace(/^\/+/, "")}`
     : "https://softalchemy.uk/images/soft-alchemy-preview.jpg";
-  const url = `https://softalchemy.uk/post.html?id=${post.id}`;
+  const url = `https://softalchemy.uk/post/${post.id}`;
 
   setCanonical(url);
 
@@ -829,7 +829,7 @@ if (postsContainer) {
 
   filterPosts(false);
   updateFilterButtonState();
-  
+
 }
 
 // -----------------------------
@@ -837,7 +837,9 @@ if (postsContainer) {
 // -----------------------------
 if (postContainer) {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+  const id =
+    new URLSearchParams(window.location.search).get("id") ||
+    document.body.dataset.postId;
   const post = posts.find(p => p.id === id);
 
   if (post) {
@@ -883,7 +885,7 @@ if (postContainer) {
     postContainer.querySelectorAll(".tag").forEach(el => {
       el.addEventListener("click", () => {
         const tag = el.dataset.tag;
-        window.location.href = `archive/index.html?tag=${encodeURIComponent(tag)}`;
+        window.location.href = `/archive/index.html?tag=${encodeURIComponent(tag)}`;
       });
     });
 
@@ -926,7 +928,7 @@ document.querySelectorAll(".chaos-list li").forEach(el => {
 // FUNCTION TO GO TO TAG (USED IN SINGLE POST)
 // -----------------------------
 function goToTag(tag) {
-  window.location.href = `archive/index.html?tag=${encodeURIComponent(tag)}`;
+  window.location.href = `/archive/index.html?tag=${encodeURIComponent(tag)}`;
 }
 
 
@@ -1111,7 +1113,7 @@ function renderRecipeCollage() {
     .filter(post => post.category === "Recipe")
     .map(post => ({
       title: post.title,
-      href: `/post.html?id=${post.id}`,
+      href: `/post/${post.id}`,
       image: post.image,
       alt: post.imageAlt || post.title
     }))
@@ -1120,7 +1122,7 @@ function renderRecipeCollage() {
   const manualAdditions = [
     {
       title: "🐕 Dog birthday cake",
-      href: "/post.html?id=echo-first-birthday#birthday-cake",
+      href: "/post/echo-first-birthday#birthday-cake",
       image: "/images/cake-cutting.jpg",
       alt: "Dog birthday cake",
       pawStamp: "/images/handwriting/paw-print-handwritten.png"
@@ -1152,7 +1154,7 @@ if (studyContainer) {
     const li = document.createElement("li");
 
     li.innerHTML = `
-      <a href="/post.html?id=${post.id}">
+      <a href="/post/${post.id}">
         ${post.title.replace(/^[^\w]+/, "")}
       </a>
     `;

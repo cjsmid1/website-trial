@@ -93,7 +93,7 @@ function renderFullUpdateCard(update) {
 
       ${update.originalPost?.trim() ? `
   <p>
-    <a href="/post.html?id=${update.originalPost}">
+    <a href="/post/${update.originalPost}">
       Read the original post →
     </a>
   </p>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}" />
+
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <meta property="og:site_name" content="Soft Alchemy" />
+  <meta property="og:title" content="{{META_TITLE}}" />
+  <meta property="og:description" content="{{META_DESCRIPTION}}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{CANONICAL_URL}}" />
+  <meta property="og:image" content="{{OG_IMAGE}}" />
+  <meta property="og:image:alt" content="{{IMAGE_ALT}}" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{META_TITLE}}" />
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}" />
+  <meta name="twitter:image" content="{{OG_IMAGE}}" />
+  <meta name="twitter:image:alt" content="{{IMAGE_ALT}}" />
+
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  </script>
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="preload" as="image" href="/images/background/watercolour-loop-light.png" />
+  <link rel="preload" as="image" href="/images/background/watercolour-loop-dark.png" />
+</head>
+
+<body data-post-id="{{POST_ID}}">
+  <main id="post" class="card"></main>
+
+  <script src="/js/posts.js" defer></script>
+  <script src="/js/updates.js" defer></script>
+  <script src="/js/script.js" defer></script>
+  <script src="/js/update-render.js" defer></script>
+</body>
+
+</html>

@@ -48,7 +48,7 @@ const fermentationTimeline = [
     type: "photo",
     image: "/images/journal/start-sourdough-todo.png",
     imageSize: "landscape",
-    text: "With the dream of my own sourdough firmly in mind, I mix together flour & water for a <a href='/post.html?id=sourdough-starter'>sourdough starter</a>.<br>It immediately gets named in honour of my dwarven chef DnD character: introducing Phyllis!",
+    text: "With the dream of my own sourdough firmly in mind, I mix together flour & water for a <a href='/post/sourdough-starter'>sourdough starter</a>.<br>It immediately gets named in honour of my dwarven chef DnD character: introducing Phyllis!",
   },
   {
     title: "🍊 A use for satsuma peels",
@@ -74,7 +74,7 @@ const fermentationTimeline = [
     title: "🍞 First bread started",
     date: "2026-03-10",
     type: "note",
-    text: "After a week of starter feeding and strange pancakes (courtesy of not wasting the discard), my first <a href='/post.html?id=sourdough-bread'>sourdough bread</a> is underway!<br>Spoiler: it was deemed a bit dense but generally tasty. I was also not smart enough to take a photo.",
+    text: "After a week of starter feeding and strange pancakes (courtesy of not wasting the discard), my first <a href='/post/sourdough-bread'>sourdough bread</a> is underway!<br>Spoiler: it was deemed a bit dense but generally tasty. I was also not smart enough to take a photo.",
   },
   {
     date: "2026-03-10",
@@ -196,7 +196,7 @@ const fermentationTimeline = [
     title: "Introducing Dax",
     date: "2026-04-17",
     type: "note",
-    text: "Began a second <a href='/post.html?id=sourdough-starter'>sourdough starter</a> in the name of science. Decided to leave him outside for a couple of hours just to see what would happen. He remained there somewhat longer than intended and was rescued the following morning.",
+    text: "Began a second <a href='/post/sourdough-starter'>sourdough starter</a> in the name of science. Decided to leave him outside for a couple of hours just to see what would happen. He remained there somewhat longer than intended and was rescued the following morning.",
   },
   {
     id: "preserved-satsumas",
@@ -286,6 +286,6 @@ const fermentationTimeline = [
     imageSize: "square",
     text: "Pineapple tepache: the ultimate scraps into gold transformation!<br>And it only took a small amount of panicked consultation before the white stuff on top was declared harmless yeast rather than mould 😅"
   },
-  
-  
+
+
 ];
