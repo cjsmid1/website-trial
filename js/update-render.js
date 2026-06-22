@@ -80,7 +80,9 @@ function renderPostUpdateSection(postId) {
   `;
 }
 
-function renderFullUpdateCard(update) {
+function renderFullUpdateCard(update, options = {}) {
+  const { showPageLink = true } = options;
+
   return `
     <article class="update-modal-card">
       <span class="update-note-meta">
@@ -89,15 +91,22 @@ function renderFullUpdateCard(update) {
 
       <h2>${update.title}</h2>
 
-      ${update.body}
-
       ${update.originalPost?.trim() ? `
   <p>
     <a href="/post/${update.originalPost}">
-      Read the original post →
+      ← Read the original post
     </a>
   </p>
-` : ""}
+  ` : ""}
+
+      ${update.body}
+      ${showPageLink ? `
+  <p>
+    <a href="/update/${update.id}/">Open as page →</a>
+  </p>
+` : renderRoomLink(update)
+}
+
     </article>
   `;
 }

@@ -1,114 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Main Pages -->
   <url>
     <loc>https://softalchemy.uk/</loc>
   </url>
-
   <url>
     <loc>https://softalchemy.uk/about/</loc>
   </url>
-
   <url>
     <loc>https://softalchemy.uk/kitchen/</loc>
   </url>
-
   <url>
     <loc>https://softalchemy.uk/kitchen/fermentation/</loc>
   </url>
-
   <url>
     <loc>https://softalchemy.uk/study/</loc>
   </url>
-
   <url>
     <loc>https://softalchemy.uk/study/timeline/</loc>
   </url>
-
-   <url>
+  <url>
     <loc>https://softalchemy.uk/garden/</loc>
   </url>
-
-   <url>
+  <url>
     <loc>https://softalchemy.uk/garden/residents/</loc>
   </url>
-
-   <url>
+  <url>
     <loc>https://softalchemy.uk/library/</loc>
   </url>
-
   <url>
     <loc>https://softalchemy.uk/archive/</loc>
   </url>
-
-  <!-- Posts -->
   <url>
-    <loc>https://softalchemy.uk/post/garden-plan</loc>
+    <loc>https://softalchemy.uk/post/garden-plan/</loc>
   </url>
-  
   <url>
-    <loc>https://softalchemy.uk/post/brownie</loc>
+    <loc>https://softalchemy.uk/post/brownie/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/mushroom-burger</loc>
+    <loc>https://softalchemy.uk/post/mushroom-burger/</loc>
   </url>
-  
-   <url>
-    <loc>https://softalchemy.uk/post/echo-collage</loc>
-  </url>
-  
-   <url>
-    <loc>https://softalchemy.uk/post/chocolate-milkshake</loc>
-  </url>
-  
-   <url>
-    <loc>https://softalchemy.uk/post/affirmations</loc>
-  </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/roasted-aubergine</loc>
+    <loc>https://softalchemy.uk/post/echo-collage/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/quote-page</loc>
+    <loc>https://softalchemy.uk/post/chocolate-milkshake/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/bingo-life</loc>
+    <loc>https://softalchemy.uk/post/affirmations/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/sourdough-starter</loc>
+    <loc>https://softalchemy.uk/post/roasted-aubergine/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/75-soft-challenge</loc>
+    <loc>https://softalchemy.uk/post/quote-page/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/tuna-sweetcorn-dumplings</loc>
+    <loc>https://softalchemy.uk/post/bingo-life/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/echo-first-birthday</loc>
+    <loc>https://softalchemy.uk/post/sourdough-starter/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/growth-areas</loc>
+    <loc>https://softalchemy.uk/post/75-soft-challenge/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/sourdough-bread</loc>
+    <loc>https://softalchemy.uk/post/tuna-sweetcorn-dumplings/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/mushroom-wellington</loc>
+    <loc>https://softalchemy.uk/post/echo-first-birthday/</loc>
   </url>
-
   <url>
-    <loc>https://softalchemy.uk/post/sabbatical-plans</loc>
+    <loc>https://softalchemy.uk/post/growth-areas/</loc>
   </url>
-
+  <url>
+    <loc>https://softalchemy.uk/post/sourdough-bread/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/post/mushroom-wellington/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/post/sabbatical-plans/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/update/kombucha-update-1/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/update/75-soft-update-1/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/update/growth-areas-update-1/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/update/sourdough-update-1/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/blueberry/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/strawberry/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/raspberry/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/aubergine/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/potato/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/bean/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/garlic/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/comfrey/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/daylily/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/tomato/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/basil/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/mint/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/herb/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/med-herb/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/borage/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/leek/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/spring-onion/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/spinach/</loc>
+  </url>
+  <url>
+    <loc>https://softalchemy.uk/plant/lambs-lettuce/</loc>
+  </url>
 </urlset>

@@ -33,8 +33,7 @@ jobs:
       - name: Check generated post pages
         run: |
           ls -la
-          ls -la post || true
-          ls -la post/roasted-aubergine || true    
+          ls -la post || true  
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3

@@ -10,6 +10,8 @@ const postsContainer = document.getElementById("posts");
 const searchInput = document.getElementById("search");
 const categoryFilter = document.getElementById("categoryFilter");
 const postContainer = document.getElementById("post");
+const singleUpdateContainer = document.getElementById("single-update");
+const singlePlantContainer = document.getElementById("single-plant");
 
 // -----------------------------
 // DARK MODE + ICON SWAP
@@ -924,6 +926,36 @@ document.querySelectorAll(".chaos-list li").forEach(el => {
 
 });
 
+
+// -----------------------------
+// Update Container
+// -----------------------------
+if (singleUpdateContainer) {
+  const updateId = document.body.dataset.updateId;
+  const update = updates.find(u => u.id === updateId);
+
+  if (update && typeof renderFullUpdateCard === "function") {
+    singleUpdateContainer.innerHTML = renderFullUpdateCard(update, {
+      showPageLink: false
+    });
+  }
+}
+
+// -----------------------------
+// Plant Container
+// -----------------------------
+if (singlePlantContainer) {
+  const plantId = document.body.dataset.plantId;
+  const plant = plantResidents.find(p => p.id === plantId);
+
+  if (plant) {
+    singlePlantContainer.innerHTML = renderPlantProfile(plant, {
+      showPageLink: false
+    });
+  }
+}
+
+
 // -----------------------------
 // FUNCTION TO GO TO TAG (USED IN SINGLE POST)
 // -----------------------------
@@ -1657,11 +1689,12 @@ document.addEventListener("click", (e) => {
 // -----------------------------
 // PLANT PROFILES
 // -----------------------------
-function renderPlantProfile(plant) {
+function renderPlantProfile(plant, options = {}) {
   const relatedEntries = getPlantTimelineEntries(plant.id);
   const timelineId = `plant-timeline-${plant.id}`;
   const imageSize = plant.imageSize || "landscape";
   const usesSideBySideLayout = ["portrait", "square"].includes(imageSize);
+  const { showPageLink = true } = options;
 
   setTimeout(() => {
     if (relatedEntries.length) {
@@ -1703,8 +1736,18 @@ function renderPlantProfile(plant) {
         id="${timelineId}"
         class="garden-timeline plant-profile-timeline-render"
       ></div>
-    </details>
+      </details>
   ` : "";
+
+  const pageLinkHtml = showPageLink ? `
+  <p>
+    <a href="/plant/${plant.id}/">Open plant page →</a>
+  </p>
+` : "";
+
+  const moreGardenResidents = !showPageLink ? `
+  <div class="related-footer"><h3><a href="/garden/residents/index.html">🪴 More from the garden residents →</a></h3></div>
+` : "";
 
   const profileBody = usesSideBySideLayout ? `
     <div class="plant-profile-main">
@@ -1730,6 +1773,8 @@ function renderPlantProfile(plant) {
     <article class="plant-profile-card plant-profile-card--${imageSize}">
       <h2>${plant.emoji} ${plant.name}</h2>
       ${profileBody}
+      ${pageLinkHtml}
+      ${moreGardenResidents}
     </article>
   `;
 }
