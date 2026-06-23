@@ -1,5 +1,122 @@
 const updates = [
   {
+    id: "75-soft-update-2",
+    room: "study",
+    category: "Study",
+    project: "75-soft",
+    title: "🏆 75 Soft Challenge: Giving Up?",
+    previewTitle: "75 Soft Challenge:<br>Giving Up?",
+    date: "2026-06-23",
+    status: "Adapted",
+    originalPost: "75-soft-challenge",
+    body: `
+    <p>Despite knowing that a center parcs holiday in the middle of my 75 soft commitment would pose a challenge, and having always identified as a person with weak ankles, I didn't expect the two to join forces and force a rather inconvenient re-evaluation. Lying on the sofa now with an ice pack over a swollen sprained ankle, strict instructions to rest said ankle, and a broken meditation streak to boot; it seems appropriate to reassess my options, and ask myself some big questions.</p>
+    <h2>Is it worth continuing?</h2>
+    <section class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Yes</th>
+        <th>No</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>I'm already two thirds through!</td>
+        <td>My biggest goal is exercise and that's very limited right now.</td>
+      </tr>
+			<tr>
+        <td>I can still benefit from the other areas.</td>
+        <td>I have enough data to know what's working and can focus on those outside of 75 soft.</td>
+      </tr>
+      <tr>
+        <td>Don't want to say I failed.</td>
+        <td>Sunk cost fallacy. I wouldn't start a month challenge with a sprained ankle, and already 45 days of data that breakfast seemingly gives me no benefit.</td>
+      </tr>
+      <tr>
+        <td>Finishing matters. Following through on my commitments, despite obstacles, matters.</td>
+        <td>I don't get extra points for collecting meaningless ticks, it makes sense to stop experiments when you have learned enough.</td>
+      </tr>
+		</tbody>
+	</table>
+  <p>Huh. When I started writing this update I was fully expecting the answer to "Should I quit?" to be yes. I've established a meditation routine, not gained much from eating breakfast or hydration, and ultimately, this challenge was about building valuable routines, over arbitrary completion rates. Unfortunately, while writing the table above, I discovered that logic wasn't the only thing getting a vote. Identity and wisdom had their say too: I care about following through on commitments, and it doesn't make sense to throw the baby out with the bath water. With that in mind, I'll ask a different question.</p>
+  <br>
+  <h2>Has this challenge already done its job?</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Goal</th>
+        <th>Lessons Learned</th>
+        <th>Opportunity for further improvement?</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Eating Breakfast</td>
+        <td>The breakfasts I tried didn't appear to improve my energy, mood or productivity.</td>
+        <td>Limited - Most breakfasts were sweet so I could focus on protein instead?</td>
+      </tr>
+			<tr>
+        <td>Hydration</td>
+        <td>I suck at keeping track of mugs/cups & embrace "probably good enough" mentality for the tracker.</td>
+        <td>Limited - I would drink more naturally in the summer anyway & have no symptoms of being dehydrated that I want to solve.</td>
+      </tr>
+			<tr>
+        <td>Reading</td>
+        <td>I value reading most when it enriches my thinking, but I mistakenly conflated that goal with reading physical books. In reality, my reading diet consists largely of fantasy audiobooks and quickly-forgotten romances on my kindle. Enjoyable as they are, they often feel like the literary equivalent of candy floss: delightful in the moment, little substance afterwards.</td>
+        <td>High - stop confusing the container with the contents and track learning from reading instead.</td>
+      </tr>
+      <tr>
+        <td>Meditation</td>
+        <td>I'm able to meditate consistently, was disappointed with ruining my streak and want to continue.</td>
+        <td>Medium - not seen specific effects from meditating yet, but would continue outside of 75 soft anyway.</td>
+      </tr>
+      <tr>
+        <td>Exercise</td>
+        <td>I still default to walking for my exercise.<br>Park runs are fun, and will continue them once ankle heals.</td>
+        <td>High - I want to focus on strength workouts and still able to do that. Need to focus on healing ankle & physio exercises which can be tracked as part of my exercise commitment.</td>
+      </tr>
+      
+		</tbody>
+	</table>
+<br>
+  <h2>Ideas for moving forward</h2>
+  <p>Do I want to give up completely? No. Do I want to ignore the lessons learned so far? Also no. Hence I propose a compromise.</p>
+      <ul>
+        <li><b>Hydration:</b> simplify to answer "Did I drink intentionally throughout the day?"</li>
+        <li><b>Breakfast:</b> switch to having protein with my first meal. This takes the pressure off eating at the start of the day and supports my strength training goal.</li>
+        <li><b>Meditation:</b> keep as is!</li>
+        <li><b>Reading:</b> instead of format, track "What did I take away?"</li>
+        <li><b>Exercise:</b> Ankle adapted - focus on core & upper body workouts, walks & physio exercises.</li>
+      </ul>
+      <br>
+      <h2>Preserve the objective. Adapt the implementation.</h2>
+      <p>Ultimately, at almost exactly the 66% mark, both the june and phase 1 trackers are officially retired. Not because the challenge failed, but because it changed. I already rejected all-or-nothing thinking when I chose 75 Soft over the hard version. Now I get to reject the mentality that breaking a streak means failure, and that deviating from the original plan means I quit.</p>
+      <table>
+    <thead>
+      <tr>
+        <th>Breakfast</th>
+        <th>Meditation</th>
+        <th>Reading</th>
+        <th>Hydration</th>
+        <th>Exercise</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>100% completion on recorded days<br>11 different breakfasts tested</td>
+        <td>Longest streak 47 days</td>
+        <td>Missed days 12%<br>Audio 60%<br>Kindle 20%<br>Physical 8%</td>
+        <td>Success rate: Unknown<br>Tracking accuracy: Impressively questionable</td>
+        <td>Missed days 27%<br>Walk 35%<br>7 Rucks<br>6 jogs<br>Most valuable = leg workout</td>
+      </tr>
+		</tbody>
+	</table>
+    `
+  },
+  {
   id: "kombucha-update-1",
   room: "fermentation",
   category: "Recipe",
@@ -44,7 +161,9 @@ const updates = [
       <ul>
         <li>On-track: Meditation, hydration, and breakfasts (albeit varying degrees of healthy and with seemingly no effects other than to cause me to have later lunches).</li>
         <img class="card-image journal" src="/images/journal/75-soft-may-overview.jpg">
+        <br>
         <li>Reading is going well overall but I have a clear trend of still defaulting to audiobooks. New plan is to have my physical book by my bed and read at night.</li>
+        <br>
         <li>Exercise is the area of greatest struggle with multiple days being skipped at a time. Weekends and ironically working on Soft Alchemy are the main distraction culprits. New plan is to workout first thing in the morning, either rucking or jogging with Echo if the weather is good, or a strength workout before I even go downstairs if it isn't.</li>
       </ul>
       <br>
@@ -67,7 +186,9 @@ const updates = [
       <li>Got away with rebranding dog training, garden maintenance and a collection of overdue house tasks left over from March into a single "Home Maintenance" growth area.
       <img class="card-image journal" src="/images/journal/growth-area-update-overview.jpg">
       </li>
+      <br>
       <li>Despite technically being demoted, Soft Alchemy continued to insist on receiving the time and attention of a full growth area throughout May, causing the other three growth areas to be slightly less successful.</li>
+      <br>
       <li>Echo's training plan was enthusiastically ignored for the entirety of May, resulting in many tasks remaining "in progress" rather than completed. June therefore arrives with a much stricter training plan in tow.
       <img class="card-image journal" src="/images/journal/growth-area-update-dog-training.jpg">
       </li>
@@ -91,7 +212,6 @@ const updates = [
       <p>
       <b>Next steps:</b> Time to investigate whether sourdough tang can improve the already high bar that are chocolate chip cookies.
       </p>
-      <div class="related-footer"><h3><a href="/kitchen/fermentation/index.html#sourdough-one">🍞 Follow the full journey →</a></h3></div>
     `
   },
 ];
