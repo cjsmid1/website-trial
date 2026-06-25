@@ -37,6 +37,28 @@
     }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://softalchemy.uk/archive/#collection",
+    "url": "https://softalchemy.uk/archive/",
+    "name": "Archive",
+    "description": "Browse every post, recipe, experiment, update and project from Soft Alchemy.",
+    "isPartOf": {
+      "@id": "https://softalchemy.uk/#website"
+    },
+    "about": [
+      "Blog",
+      "Recipes",
+      "Gardening",
+      "Self Improvement",
+      "Fermentation",
+      "Dogs"
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="preload" as="image" href="/images/background/watercolour-loop-light.png" />
   <link rel="preload" as="image" href="/images/background/watercolour-loop-dark.png" />
@@ -58,33 +80,33 @@
     <button id="randomPostBtn" class="archive-paw-button" type="button" aria-label="Open a random post">
       <img src="/images/handwriting/paw-print-handwritten.png" alt="" />
     </button>
-  
+
     <input type="text" id="search" placeholder="Search posts..." />
-  
+
     <div class="archive-filter-menu" id="archiveFilterMenu">
       <button class="archive-filter-toggle" type="button">
         Filters ▾
       </button>
-  
+
       <div class="archive-filter-panel">
         <p class="filter-section-label">Display</p>
-  
+
         <label>
           <input type="checkbox" id="showPosts" checked>
           <span>Posts</span>
         </label>
-        
+
         <label>
           <input type="checkbox" id="showUpdates">
           <span>Updates</span>
         </label>
-        
+
         <p class="filter-section-label">Categories</p>
         <label>
           <input type="radio" name="archiveCategory" value="" checked>
           <span>All Categories</span>
         </label>
-  
+
         <div id="categoryOptions"></div>
       </div>
     </div>

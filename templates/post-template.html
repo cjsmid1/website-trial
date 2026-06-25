@@ -19,6 +19,9 @@
   <meta property="og:image" content="{{OG_IMAGE}}" />
   <meta property="og:image:alt" content="{{IMAGE_ALT}}" />
 
+  <meta name="author" content="{{AUTHOR}}" />
+  <meta property="article:published_time" content="{{PUBLISHED_TIME}}" />
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{META_TITLE}}" />
   <meta name="twitter:description" content="{{META_DESCRIPTION}}" />
@@ -30,6 +33,8 @@
       document.documentElement.classList.add("dark");
     }
   </script>
+
+  {{STRUCTURED_DATA}}
 
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="preload" as="image" href="/images/background/watercolour-loop-light.png" />

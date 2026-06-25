@@ -1,5 +1,26 @@
 const updates = [
   {
+    id: "soft-alchemy-update-1",
+    room: "study",
+    category: "Study",
+    project: "soft-alchemy",
+    title: "Building a Website: First Two Months",
+    previewTitle: "Building a Website:<br>First Two Months",
+    date: "2026-06-24",
+    status: "Active",
+    originalPost: "growth-areas",
+    metaTitle: "Building a Personal Blog from Scratch: My First Two Months",
+    metaDescription: "Two months into building Soft Alchemy from scratch: traffic, Pinterest experiments, Google indexing, lessons learned, embarrassing mistakes, and what’s next.",
+    body: `
+    <p>
+    Since committing to building a website from scratch as a growth area in April, a lot has happened...
+    </p>
+    <h3>Progress</h3>
+    <h3>Analytics</h3>
+    <h3>Embarrassments</h3>
+    `
+  },
+  {
     id: "75-soft-update-2",
     room: "study",
     category: "Study",
@@ -9,6 +30,10 @@ const updates = [
     date: "2026-06-23",
     status: "Adapted",
     originalPost: "75-soft-challenge",
+    metaTitle:
+      "Should I Quit 75 Soft ? Lessons from a Sprained Ankle",
+    metaDescription:
+      "A sprained ankle forced me to rethink my 75 Soft Challenge halfway through. Here's what I'd learned, what I'd change, and why I decided not to quit.",
     body: `
     <p>Despite knowing that a center parcs holiday in the middle of my 75 soft commitment would pose a challenge, and having always identified as a person with weak ankles, I didn't expect the two to join forces and force a rather inconvenient re-evaluation. Lying on the sofa now with an ice pack over a swollen sprained ankle, strict instructions to rest said ankle, and a broken meditation streak to boot; it seems appropriate to reassess my options, and ask myself some big questions.</p>
     <h2>Is it worth continuing?</h2>
@@ -93,7 +118,6 @@ const updates = [
       </ul>
       <br>
       <h2>Preserve the objective. Adapt the implementation.</h2>
-      <p>Ultimately, at almost exactly the 66% mark, both the june and phase 1 trackers are officially retired. Not because the challenge failed, but because it changed. I already rejected all-or-nothing thinking when I chose 75 Soft over the hard version. Now I get to reject the mentality that breaking a streak means failure, and that deviating from the original plan means I quit.</p>
       <table>
     <thead>
       <tr>
@@ -110,10 +134,11 @@ const updates = [
         <td>Longest streak 47 days</td>
         <td>Missed days 12%<br>Audio 60%<br>Kindle 20%<br>Physical 8%</td>
         <td>Success rate: Unknown<br>Tracking accuracy: Impressively questionable</td>
-        <td>Missed days 27%<br>Walk 35%<br>7 Rucks<br>6 jogs<br>Most valuable = leg workout</td>
+        <td>Missed days 27%<br>Walk 35%<br>7 rucks<br>6 jogs<br>Most valuable = leg workout</td>
       </tr>
 		</tbody>
 	</table>
+  <p>Ultimately, at almost exactly the 66% mark, both the june and phase 1 trackers are officially retired. Not because the challenge failed, but because it changed. I already rejected all-or-nothing thinking when I chose 75 Soft over the hard version. Now I get to reject the mentality that breaking a streak means failure, and that deviating from the original plan means I quit.</p>
     `
   },
   {
@@ -127,6 +152,12 @@ const updates = [
   status: "Deceased",
   markerImage: "/images/handwriting/skull-icon.png",
   tags: ["fermentation"],
+  metaTitle:
+      "My Kombucha Never Grew a SCOBY. Here's What I Learned.",
+  metaDescription:
+      "After 48 days, two attempts and a heat mat, my homemade kombucha still failed to grow a SCOBY. Lessons learned before starting again with a proper starter culture.",
+  image: "/images/kombucha-scoby.jpg",
+  imageAlt: "Jar of homemade kombucha after a failed attempt to grow a SCOBY",    
   body: `
       <p>In a noble attempt to look after my gut while accepting I still don't like fizzy drinks, I turned to the art of kombucha fermentation. The internet made it seem simple enough, first you acquire a mysterious jelly disc called a SCOBY, and from there you transform tea into kombucha. Did I just buy a SCOBY to make my life easier - of course not! Did I spend a solid 30 minutes in front of the kombucha section of Sainsbury's desperately researching which would give me the highest success for creating my own SCOBY? No comment.<br>
       The first attempt began, and after about a fortnight of patience, the first attempt failed with the great mould invasion claiming another sacrifice.
@@ -157,6 +188,13 @@ const updates = [
     date: "2026-06-01",
     status: "Active",
     originalPost: "75-soft-challenge",
+    metaTitle:
+      "75 Soft Challenge After One Month: What's Working?",
+    metaDescription:
+      "One month into my personalised 75 Soft Challenge. Successes, struggles with exercise, audiobook habits, and the adjustments I'm making for June.",
+    image: "/images/journal/75-soft-may-overview.jpg",
+    imageAlt:
+      "Completed May tracker for the 75 Soft challenge",
     body: `
       <ul>
         <li>On-track: Meditation, hydration, and breakfasts (albeit varying degrees of healthy and with seemingly no effects other than to cause me to have later lunches).</li>
@@ -181,6 +219,13 @@ const updates = [
     date: "2026-05-31",
     status: "Ongoing",
     originalPost: "growth-areas",
+    metaTitle:
+      "Monthly Growth Areas Review: Wins, Lessons and New Priorities",
+    metaDescription:
+      "Looking back on a month of growth areas, including dog training, home maintenance and building Soft Alchemy, plus what I'll focus on next.",
+    image: "/images/journal/growth-area-update-overview.jpg",
+    imageAlt:
+      "Monthly growth areas overview written in a journal",
     body: `
       <ul>
       <li>Got away with rebranding dog training, garden maintenance and a collection of overdue house tasks left over from March into a single "Home Maintenance" growth area.
@@ -205,6 +250,13 @@ const updates = [
     date: "2026-05-27",
     status: "Success",
     originalPost: "sourdough-bread",
+    metaTitle:
+      "Can You Rescue Overproofed Sourdough? I Turned Mine into Focaccia.",
+    metaDescription:
+      "My forgotten sourdough dough spent five days overproofing in the fridge, so I turned the failed loaf into focaccia instead.",
+    image: "/images/focaccia.jpg",
+    imageAlt:
+      "Homemade sourdough focaccia baked from overproofed dough",
     body: `
       <p>Occasionally you'll do all the hard work of stretching and folding the night before, only for life to get in the way and the dough never quite makes it into the oven. By day five, having still not gotten around to baking it, I had firmly entered the land of overproofing. Rather than risk presenting a dense brick for dinner, I went with another option: focaccia.</p>
       <img class="card-image" src="/images/focaccia.jpg" alt="Loaf of sourdough focaccia bread">

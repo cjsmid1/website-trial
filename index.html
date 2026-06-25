@@ -36,6 +36,43 @@
       document.documentElement.classList.add("dark");
     }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://softalchemy.uk/#organization",
+        "url": "https://softalchemy.uk/",
+        "name": "Soft Alchemy",
+        "description": "Gentle experiments in everyday life, from gardening and fermentation to self-improvement and dog-approved adventures."
+      },
+      {
+        "@type": "Person",
+        "@id": "https://softalchemy.uk/about/#claire",
+        "name": "Claire Smid",
+        "url": "https://softalchemy.uk/about/"
+      },
+      {
+  "@type": "Blog",
+  "@id": "https://softalchemy.uk/archive/#blog",
+  "url": "https://softalchemy.uk/archive/",
+  "name": "Soft Alchemy",
+  "description": "A personal blog documenting gentle experiments in everyday life.",
+  "publisher": {
+    "@id": "https://softalchemy.uk/#organization"
+  },
+  "author": {
+    "@id": "https://softalchemy.uk/about/#claire"
+  },
+  "inLanguage": "en-GB"
+}
+    ]
+  }
+
+  </script>
+
   <link rel="stylesheet" href="css/main.css">
   <link rel="preload" as="image" href="images/background/watercolour-loop-light.png">
   <link rel="preload" as="image" href="images/background/watercolour-loop-dark.png">

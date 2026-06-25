@@ -104,6 +104,43 @@ function absoluteImageUrl(imagePath) {
   return `${SITE_URL}/${imagePath.replace(/^\/+/, "")}`;
 }
 
+function jsonLdScript(data) {
+  return `<script type="application/ld+json">
+${JSON.stringify(data, null, 2)}
+</script>`;
+}
+
+function siteEntity() {
+  return {
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    "url": `${SITE_URL}/`,
+    "name": "Soft Alchemy",
+    "description": "Gentle experiments in everyday life, from gardening and fermentation to self-improvement and dog-approved adventures."
+  };
+}
+
+function authorEntity() {
+  return {
+    "@type": "Person",
+    "@id": `${SITE_URL}/about/#claire-smid`,
+    "name": "Claire Smid",
+    "url": `${SITE_URL}/about/`
+  };
+}
+
+function breadcrumbEntity(items) {
+  return {
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+}
+
 // ---------- Build one post ----------
 function buildPost(post) {
   const outputDir = path.join(POST_OUTPUT_DIR, post.id);
@@ -116,6 +153,9 @@ function buildPost(post) {
   const canonicalUrl = `${SITE_URL}/post/${post.id}/`;
   const ogImage = absoluteImageUrl(post.image);
 
+  const author = post.author || "Claire Smid";
+  const publishedTime = post.date || "";
+
   const tagsHtml = (post.tags || [])
     .map(tag => `
       <span class="tag" data-tag="${escapeHtml(tag)}">
@@ -124,6 +164,42 @@ function buildPost(post) {
     `)
     .join("");
 
+  const isRecipe = post.category === "Recipe";
+
+  const structuredData = jsonLdScript({
+    "@context": "https://schema.org",
+    "@graph": [
+      siteEntity(),
+      authorEntity(),
+      {
+        "@type": isRecipe ? "Recipe" : "BlogPosting",
+        "@id": `${canonicalUrl}#article`,
+        "mainEntityOfPage": canonicalUrl,
+        "headline": metaTitle,
+        "name": post.title.replace(/^[^\w]+/, ""),
+        "description": metaDescription,
+        "image": [ogImage],
+        "author": { "@id": `${SITE_URL}/about/#claire-smid` },
+        "publisher": { "@id": `${SITE_URL}/#organization` },
+        "datePublished": post.date,
+        "dateModified": post.updated || post.date,
+        ...(isRecipe ? {
+          "recipeCategory": post.tags?.includes("sweet") ? "Dessert" : "Main course",
+          "recipeCuisine": post.tags?.includes("asian") ? "Asian" : undefined,
+          "keywords": (post.tags || []).join(", ")
+        } : {
+          "keywords": (post.tags || []).join(", "),
+          "articleSection": post.category
+        })
+      },
+      breadcrumbEntity([
+        { name: "Home", url: `${SITE_URL}/` },
+        { name: "Archive", url: `${SITE_URL}/archive/` },
+        { name: post.title.replace(/^[^\w]+/, ""), url: canonicalUrl }
+      ])
+    ]
+  });  
+
   const html = template
     .replaceAll("{{META_TITLE}}", escapeHtml(metaTitle))
     .replaceAll("{{META_DESCRIPTION}}", escapeHtml(metaDescription))
@@ -131,6 +207,9 @@ function buildPost(post) {
     .replaceAll("{{OG_IMAGE}}", ogImage)
     .replaceAll("{{IMAGE_ALT}}", escapeHtml(post.imageAlt || post.title))
     .replaceAll("{{CATEGORY_CLASS}}", escapeHtml((post.category || "").toLowerCase()))
+    .replaceAll("{{AUTHOR}}", escapeHtml(author))
+    .replaceAll("{{PUBLISHED_TIME}}", escapeHtml(publishedTime))
+    .replaceAll("{{STRUCTURED_DATA}}", structuredData)
     .replaceAll("{{POST_ID}}", escapeHtml(post.id));
 
   fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");
@@ -166,12 +245,50 @@ function buildUpdate(update) {
     parentPost?.imageAlt ||
     update.title;
 
+  const author = update.author || "Claire Smid";
+  const publishedTime = update.date || "";
+
+  const structuredData = jsonLdScript({
+    "@context": "https://schema.org",
+    "@graph": [
+      siteEntity(),
+      authorEntity(),
+      {
+        "@type": "BlogPosting",
+        "@id": `${canonicalUrl}#article`,
+        "mainEntityOfPage": canonicalUrl,
+        "headline": metaTitle,
+        "name": update.title.replace(/^[^\w]+/, ""),
+        "description": metaDescription,
+        "image": [ogImage],
+        "author": { "@id": `${SITE_URL}/about/#claire-smid` },
+        "publisher": { "@id": `${SITE_URL}/#organization` },
+        "datePublished": update.date,
+        "dateModified": update.updated || update.date,
+        "articleSection": update.category || update.room || "Update",
+        "keywords": [
+          update.project,
+          update.status,
+          ...(update.tags || [])
+        ].filter(Boolean).join(", ")
+      },
+      breadcrumbEntity([
+        { name: "Home", url: `${SITE_URL}/` },
+        { name: "Archive", url: `${SITE_URL}/archive/` },
+        { name: update.title.replace(/^[^\w]+/, ""), url: canonicalUrl }
+      ])
+    ]
+  });
+
   const html = updateTemplate
     .replaceAll("{{META_TITLE}}", escapeHtml(metaTitle))
     .replaceAll("{{META_DESCRIPTION}}", escapeHtml(metaDescription))
     .replaceAll("{{CANONICAL_URL}}", canonicalUrl)
     .replaceAll("{{OG_IMAGE}}", ogImage)
     .replaceAll("{{IMAGE_ALT}}", escapeHtml(imageAlt))
+    .replaceAll("{{AUTHOR}}", escapeHtml(author))
+    .replaceAll("{{PUBLISHED_TIME}}", escapeHtml(publishedTime))
+    .replaceAll("{{STRUCTURED_DATA}}", structuredData)
     .replaceAll("{{UPDATE_ID}}", escapeHtml(update.id));
 
   fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");
@@ -203,12 +320,39 @@ function buildPlant(plant) {
     plant.alt ||
     plant.name;
 
+  const structuredData = jsonLdScript({
+    "@context": "https://schema.org",
+    "@graph": [
+      siteEntity(),
+      {
+        "@type": "ProfilePage",
+        "@id": `${canonicalUrl}#profile`,
+        "mainEntityOfPage": canonicalUrl,
+        "name": plant.name,
+        "description": metaDescription,
+        "image": [ogImage],
+        "dateCreated": plant.started,
+        "about": {
+          "@type": "Thing",
+          "name": plant.name,
+          "description": metaDescription
+        }
+      },
+      breadcrumbEntity([
+        { name: "Home", url: `${SITE_URL}/` },
+        { name: "Garden Residents", url: `${SITE_URL}/garden/residents/` },
+        { name: plant.name, url: canonicalUrl }
+      ])
+    ]
+  });  
+
   const html = plantTemplate
     .replaceAll("{{META_TITLE}}", escapeHtml(metaTitle))
     .replaceAll("{{META_DESCRIPTION}}", escapeHtml(metaDescription))
     .replaceAll("{{CANONICAL_URL}}", canonicalUrl)
     .replaceAll("{{OG_IMAGE}}", ogImage)
     .replaceAll("{{IMAGE_ALT}}", escapeHtml(imageAlt))
+    .replaceAll("{{STRUCTURED_DATA}}", structuredData)
     .replaceAll("{{PLANT_ID}}", escapeHtml(plant.id));
 
   fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");

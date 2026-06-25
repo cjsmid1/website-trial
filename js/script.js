@@ -539,7 +539,9 @@ function updatePostMetadata(post) {
   setMetaProperty("og:type", "article");
   setMetaProperty("og:url", url);
   setMetaProperty("og:image", image);
-
+  setMetaProperty("article:published_time", post.date);
+  
+  setMeta("author", "Claire Smid");
   setMeta("twitter:card", "summary_large_image");
   setMeta("twitter:title", title);
   setMeta("twitter:description", description);
@@ -548,6 +550,46 @@ function updatePostMetadata(post) {
   if (post.imageAlt) {
     setMetaProperty("og:image:alt", post.imageAlt);
     setMeta("twitter:image:alt", post.imageAlt);
+  }
+}
+
+function updateUpdateMetadata(update) {
+  const title = update.metaTitle || `${update.title} | Soft Alchemy`;
+  const description =
+    update.metaDescription ||
+    update.excerpt ||
+    update.summary ||
+    "A Soft Alchemy update about an ongoing experiment, project or gentle domestic adventure.";
+
+  const image = update.image
+    ? `https://softalchemy.uk/${update.image.replace(/^\/+/, "")}`
+    : "https://softalchemy.uk/images/soft-alchemy-preview.jpg";
+
+  const url = `https://softalchemy.uk/update/${update.id}/`;
+
+  setCanonical(url);
+
+  document.title = title;
+
+  setMeta("description", description);
+  setMeta("author", "Claire Smid");
+
+  setMetaProperty("og:site_name", "Soft Alchemy");
+  setMetaProperty("og:title", title);
+  setMetaProperty("og:description", description);
+  setMetaProperty("og:type", "article");
+  setMetaProperty("og:url", url);
+  setMetaProperty("og:image", image);
+  setMetaProperty("article:published_time", update.date);
+
+  setMeta("twitter:card", "summary_large_image");
+  setMeta("twitter:title", title);
+  setMeta("twitter:description", description);
+  setMeta("twitter:image", image);
+
+  if (update.imageAlt) {
+    setMetaProperty("og:image:alt", update.imageAlt);
+    setMeta("twitter:image:alt", update.imageAlt);
   }
 }
 
@@ -727,7 +769,7 @@ function renderRelatedPost(currentPost) {
 
   relatedSection.innerHTML = `
     <div class="related-header">
-      <h3>The archive suggests...</h3>
+      <h3>You may also enjoy...</h3>
     </div>
 
     ${relatedPost
@@ -738,7 +780,7 @@ function renderRelatedPost(currentPost) {
     ${randomPost
       ? `
     <div class="related-footer">
-      <h3>or follow Echo</h3>
+      <h3>or follow the paw prints...</h3>
 
       <button
         class="archive-paw-button"
@@ -784,12 +826,21 @@ function renderRoomLink(post) {
 
   const room = roomData[roomKey];
   if (!room) return "";
-  const roomName = room.title.replace(/^The\b/, "the");
+
+  const roomLinkText = {
+    kitchen: "Raid more kitchen experiments →",
+    garden: "See what else is growing →",
+    study: "Continue exploring the Study →",
+    library: "Wander into the library →",
+    echo: "Visit Echo’s corner →"
+  };
+
+  const linkText = roomLinkText[roomKey] || `More from ${room.title} →`;
 
   return `
     <div class="related-footer">
       <h3><a href="${room.url}">
-        ${room.emoji} More from ${roomName} →
+        ${room.emoji} ${linkText}
       </a></h3>
     </div>
   `;
@@ -935,6 +986,8 @@ if (singleUpdateContainer) {
   const update = updates.find(u => u.id === updateId);
 
   if (update && typeof renderFullUpdateCard === "function") {
+    updateUpdateMetadata(update);
+
     singleUpdateContainer.innerHTML = renderFullUpdateCard(update, {
       showPageLink: false
     });

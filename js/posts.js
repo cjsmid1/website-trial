@@ -61,9 +61,9 @@ const posts = [
 		id: "garden-plan",
 		date: "2026-06-05",
 		title: "🪴 Crafting A Garden",
-		metaTitle: "🪴 How to Plan a Garden | Soft Alchemy",
+		metaTitle: "How I Planned a Renter-Friendly UK Container Garden",
 		metaDescription:
-			"A beginner-friendly guide to planning a garden, from identifying goals and limitations to choosing plants, creating layouts, and avoiding common mistakes.",
+			"A beginner-friendly guide to planning a UK container garden, from identifying goals and limitations to choosing plants, creating layouts, and avoiding common mistakes.",
 		image: "/images/garden/garden-plan-layout-01-2026.jpg",
 		imageAlt: "Hand-drawn garden planning layout showing planting zones, containers and growing areas",
 		category: "Garden",
@@ -200,7 +200,7 @@ const posts = [
 		id: "brownie",
 		date: "2026-06-04",
 		title: "🤎 The Brownie Recipe Worth Asking For",
-		metaTitle: "🤎 The Brownie Recipe Worth Asking For | Soft Alchemy",
+		metaTitle: "Best Fudgy Brownie Recipe: The One People Always Ask For",
 		metaDescription: "A rich, reliable brownie recipe discovered in a café beside Britain's highest railway station. Fudgy, adaptable, and thoroughly tested over many years of enthusiastic baking.",
 		image: "/images/brownie-pan.png",
 		imageAlt: "Freshly baked chocolate brownies cooling in a cast iron pan",
@@ -254,7 +254,7 @@ const posts = [
 		id: "mushroom-burger",
 		date: "2026-06-04",
 		title: "🍔 Mushroom Burger",
-		metaTitle: "🍔 Mushroom Burger | Soft Alchemy",
+		metaTitle: "Homemade Mushroom Burger Recipe | Vegetarian BBQ Idea",
 		metaDescription:
 			"A rich homemade mushroom burger recipe packed with mushrooms, garlic, stock and cheese. Smoky, satisfying, and capable of putting many restaurant veggie burgers to shame.",
 		image: "/images/mushroom-burger-square.png",
@@ -304,8 +304,11 @@ const posts = [
 		id: "echo-collage",
 		date: "2026-05-26",
 		title: "📸 A Completely Normal Amount of Dog Photos",
+		metaTitle: "Echo the Papillon | A Completely Normal Amount of Dog Photos",
 		metaDescription:
 			"A totally reasonable collection of Echo photos featuring dramatic ear floofs, suspicious levels of cuteness, and ongoing small supervisor energy.",
+		image: "/images/echo/echo-cute.jpg",
+		imageAlt: "A collage of Echo the papillon playing, exploring and looking adorable",
 		category: "Life",
 		tags: ["dog-approved"],
 		excerpt: "The time I used blogging as an excuse to create an entirely necessary archive of puppy photos...",
@@ -323,7 +326,7 @@ const posts = [
 		id: "chocolate-milkshake",
 		date: "2026-05-25",
 		title: "🥤 Mint Chocolate Milkshake",
-		metaTitle: "🥤 Mint Chocolate Milkshake | Soft Alchemy",
+		metaTitle: "Mint Chocolate Milkshake Recipe with Aero Chocolate",
 		metaDescription:
 			"A ridiculously indulgent homemade mint chocolate milkshake recipe made with Aero, vanilla ice cream, and chocolate spread. Easily adapted into Biscoff, Banoffee, Honeycomb and more.",
 		image: "/images/milkshake-portrait.jpg",
@@ -413,7 +416,7 @@ const posts = [
 		id: "affirmations",
 		date: "2026-05-22",
 		title: "💭 Tiny Stories We Tell Ourselves",
-		metaTitle: "Tiny Stories We Tell Ourselves | Soft Alchemy",
+		metaTitle: "Do Affirmations Work? A Personal Reflection",
 		metaDescription:
 			"A reflective exploration of affirmations, attention, identity and the quiet ways repeated words may shape the person we become.",
 		category: "Study",
@@ -485,7 +488,7 @@ const posts = [
 		id: "roasted-aubergine",
 		date: "2026-05-21",
 		title: "🍆 Roasted Aubergine",
-		metaTitle: "🍆 Roasted Aubergine | Soft Alchemy",
+		metaTitle: "Sticky Roasted Aubergine with Bulgogi Glaze",
 		metaDescription:
 			"Sticky roasted aubergine with bulgogi glaze, crispy pak choi, noodles & vegetables. An easy vegetarian comfort recipe packed with savoury umami flavour.",
 		image: "/images/roasted-aubergine.jpg",
@@ -538,7 +541,7 @@ const posts = [
 		id: "quote-page",
 		date: "2026-05-19",
 		title: "💎 Verbal Treasures",
-		metaTitle: "Verbal Treasures | Favourite Quotes & Tiny Reflections",
+		metaTitle: "Favourite Quotes, Reflections & Verbal Treasures",
 		metaDescription:
 			"A playful collection of favourite quotes, thoughtful lines, and tiny reflections gathered in the Soft Alchemy quote aviary.",
 		image: "/images/pinterest/quote-page-pin.jpg",
@@ -593,7 +596,7 @@ const posts = [
 		id: "bingo-life",
 		date: "2026-05-14",
 		title: "🔢 A Bingo Life",
-		metaTitle: "A Bingo Life | Gamify Your Goals with Personal Bingo Cards",
+		metaTitle: "Personal Bingo Cards for Goals & Habits",
 		metaDescription:
 			"How to use personalised bingo cards to make goals, habits, dates, and monthly challenges more playful and achievable.",
 		image: "/images/bingo-year.jpg",
@@ -764,9 +767,9 @@ const posts = [
 		date: "2026-05-06",
 		title: "🏆 75 Soft Challenge",
 		metaTitle:
-			"75 Soft Challenge Plan | Gentle Habits, Fitness & Self Improvement",
+			"75 Soft Challenge Plan: Gentle Habits & Fitness Goals",
 		metaDescription:
-			"My personalised 75 Soft Challenge plan with meditation, reading, hydration, protein breakfasts, and 45 minutes of daily exercise.",
+			"My personalised 75 Soft Challenge plan, including meditation, reading, hydration, protein breakfasts and daily exercise, adapted for sustainable habits.",
 		image: "/images/75-soft-plan.jpg",
 		imageAlt: "Handwritten 75 Soft Challenge commitment notes",
 		category: "Study",
@@ -897,7 +900,7 @@ const posts = [
 		id: "echo-first-birthday",
 		date: "2026-04-27",
 		title: "🎂 Do Dog Birthdays Count?",
-		metaTitle: "Do Dog Birthdays Count? | Echo’s First Birthday Adventure",
+		metaTitle: "Echo’s First Birthday: Wisley Gardens, Dog Ice Cream & Cake",
 		metaDescription:
 			"Echo the papillon celebrates his first birthday with Walkies at Wisley, dog ice cream, birthday cake, and a very serious dog review.",
 		image: "/images/echo/echo-wisley.jpg",
@@ -975,7 +978,7 @@ const posts = [
 		id: "growth-areas",
 		date: "2026-04-24",
 		title: "🌿 Growth Areas",
-		metaTitle: "Growth Areas | A Gentle System for Focused Self Improvement",
+		metaTitle: "Growth Areas: A Simple Monthly Self Improvement System",
 		metaDescription:
 			"A simple monthly planning system for choosing three growth areas, reducing overwhelm, and turning too many goals into a focused plan.",
 		image: "/images/grow-area-summary.jpg",

@@ -94,7 +94,7 @@ function renderFullUpdateCard(update, options = {}) {
       ${update.originalPost?.trim() ? `
   <p>
     <a href="/post/${update.originalPost}">
-      ← Read the original post
+      Start the experiment from the beginning →
     </a>
   </p>
   ` : ""}
