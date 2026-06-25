@@ -1,26 +1,5 @@
 const updates = [
   {
-    id: "soft-alchemy-update-1",
-    room: "study",
-    category: "Study",
-    project: "soft-alchemy",
-    title: "Building a Website: First Two Months",
-    previewTitle: "Building a Website:<br>First Two Months",
-    date: "2026-06-24",
-    status: "Active",
-    originalPost: "growth-areas",
-    metaTitle: "Building a Personal Blog from Scratch: My First Two Months",
-    metaDescription: "Two months into building Soft Alchemy from scratch: traffic, Pinterest experiments, Google indexing, lessons learned, embarrassing mistakes, and what’s next.",
-    body: `
-    <p>
-    Since committing to building a website from scratch as a growth area in April, a lot has happened...
-    </p>
-    <h3>Progress</h3>
-    <h3>Analytics</h3>
-    <h3>Embarrassments</h3>
-    `
-  },
-  {
     id: "75-soft-update-2",
     room: "study",
     category: "Study",

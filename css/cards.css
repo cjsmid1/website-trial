@@ -122,7 +122,7 @@
 
 /* second card bigger */
 .two-column-layout.right-wide {
-  grid-template-columns: 1fr 1.9fr;
+  grid-template-columns: 1fr 1.685fr;
 }
 
 /* equal cards */
@@ -263,7 +263,7 @@
 .start-paw-trail {
   position: absolute;
 
-  top: 2.5rem;
+  top: 3rem;
   right: 0.8rem;
 
   display: flex;
