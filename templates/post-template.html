@@ -36,6 +36,30 @@
 
   {{STRUCTURED_DATA}}
 
+  <!-- Google tag (gtag.js) -->
+  <script>
+    if (localStorage.getItem("excludeAnalytics") !== "true") {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-563L2Z66XJ";
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      window.gtag = gtag;
+
+      gtag("js", new Date());
+
+      gtag("config", "G-563L2Z66XJ", {
+        send_page_view: false,
+      });
+    }
+  </script>
+
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="preload" as="image" href="/images/background/watercolour-loop-light.png" />
   <link rel="preload" as="image" href="/images/background/watercolour-loop-dark.png" />

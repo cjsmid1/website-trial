@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pawprint</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <script>
+    const currentlyExcluded = localStorage.getItem("excludeAnalytics") === "true";
+
+    if (currentlyExcluded) {
+      localStorage.removeItem("excludeAnalytics");
+      document.body.innerHTML = `
+      <h1>🐾 Pawprints visible</h1>
+      <p>Analytics is now enabled for this browser.</p>
+      <p>Redirecting...</p>
+    `;
+    } else {
+      localStorage.setItem("excludeAnalytics", "true");
+      document.body.innerHTML = `
+      <h1>🐾 Pawprints hidden</h1>
+      <p>Analytics is now disabled for this browser.</p>
+      <p>Redirecting...</p>
+    `;
+    }
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1800);
+  </script>
+</body>
+
+</html>

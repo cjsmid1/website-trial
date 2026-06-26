@@ -16,17 +16,28 @@
   <link rel="preload" as="image" href="images/background/watercolour-loop-dark.png" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-563L2Z66XJ"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    if (localStorage.getItem("excludeAnalytics") !== "true") {
 
-    gtag("config", "G-563L2Z66XJ", {
-      send_page_view: false,
-    });
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-563L2Z66XJ";
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      window.gtag = gtag;
+
+      gtag("js", new Date());
+
+      gtag("config", "G-563L2Z66XJ", {
+        send_page_view: false,
+      });
+    }
   </script>
 </head>
 
