@@ -40,20 +40,55 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": "https://softalchemy.uk/garden/#collection",
-    "url": "https://softalchemy.uk/garden/",
-    "name": "The Garden",
-    "description": "Container gardening experiments, plant profiles, timelines and seasonal updates from the Soft Alchemy garden.",
-    "isPartOf": {
-      "@id": "https://softalchemy.uk/#website"
-    },
-    "about": [
-      "Container Gardening",
-      "Vegetables",
-      "Herbs",
-      "Fruit",
-      "Plants"
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://softalchemy.uk/garden/#collection",
+        "url": "https://softalchemy.uk/garden/",
+        "name": "The Garden",
+        "description": "Container gardening experiments, plant profiles, timelines and seasonal updates from the Soft Alchemy garden.",
+        "isPartOf": {
+          "@id": "https://softalchemy.uk/#website"
+        },
+        "about": [
+          "Container Gardening",
+          "Vegetables",
+          "Herbs",
+          "Fruit",
+          "Plants"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://softalchemy.uk/garden/#faq",
+        "url": "https://softalchemy.uk/garden/",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What kind of garden is Soft Alchemy’s garden?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Soft Alchemy’s garden is a renter-friendly container garden in Surrey, UK, focused on vegetables, herbs, fruit, flowers and small seasonal experiments."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you grow vegetables in containers in the UK?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The garden uses pots, buckets, troughs and grow bags to grow crops such as tomatoes, potatoes, herbs, strawberries, raspberries, garlic and leeks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is included in the Garden Log?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Garden Log follows the first year of the garden through seasonal notes, plant updates, successes, failures and lessons learned."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>

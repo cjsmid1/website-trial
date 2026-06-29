@@ -39,6 +39,14 @@ const plantsFile = fs.readFileSync(
   path.join(__dirname, "js", "plants.js"),
   "utf8"
 );
+const gardenTimelineFile = fs.readFileSync(
+  path.join(__dirname, "js", "garden-timeline.js"),
+  "utf8"
+);
+
+const structuredDataFile = fs.existsSync(path.join(__dirname, "js", "structured-data.js"))
+  ? fs.readFileSync(path.join(__dirname, "js", "structured-data.js"), "utf8")
+  : "const structuredData = {};";
 
 const sandbox = {};
 vm.createContext(sandbox);
@@ -46,10 +54,14 @@ vm.createContext(sandbox);
 vm.runInContext(postsFile + "\nthis.posts = posts;", sandbox);
 vm.runInContext(updatesFile + "\nthis.updates = updates;", sandbox);
 vm.runInContext(plantsFile + "\nthis.plantResidents = plantResidents;", sandbox);
+vm.runInContext(structuredDataFile + "\nthis.structuredData = structuredData;", sandbox);
+vm.runInContext(gardenTimelineFile + "\nthis.gardenTimeline = gardenTimeline;", sandbox);
 
 const posts = sandbox.posts;
 const updates = sandbox.updates;
 const plants = sandbox.plantResidents;
+const structuredDataExtras = sandbox.structuredData || {};
+const gardenTimeline = sandbox.gardenTimeline || [];
 
 if (!Array.isArray(posts)) {
   throw new Error("Could not load posts from js/posts.js");
@@ -59,6 +71,9 @@ if (!Array.isArray(updates)) {
 }
 if (!Array.isArray(plants)) {
   throw new Error("Could not load plants from js/plants.js");
+}
+if (!Array.isArray(gardenTimeline)) {
+  throw new Error("Could not load gardenTimeline from js/garden-timeline.js");
 }
 
 // ---------- Load template ----------
@@ -129,6 +144,19 @@ function authorEntity() {
   };
 }
 
+function organisationEntity() {
+  return {
+    "@type": "Organization",
+      "@id": "https://softalchemy.uk/#organization",
+        "name": "Soft Alchemy",
+          "url": "https://softalchemy.uk/",
+            "logo": {
+      "@type": "ImageObject",
+        "url": "https://softalchemy.uk/favicon.png"
+    }
+  };
+}
+
 function breadcrumbEntity(items) {
   return {
     "@type": "BreadcrumbList",
@@ -139,6 +167,80 @@ function breadcrumbEntity(items) {
       "item": item.url
     }))
   };
+}
+
+function cleanTitle(value = "") {
+  return String(value).replace(/^[^\w]+/, "");
+}
+
+function keywordsText(value, fallback = "") {
+  if (Array.isArray(value)) return value.filter(Boolean).join(", ");
+  return value || fallback;
+}
+
+function recipeInstructionSteps(instructions = []) {
+  return instructions.map((instruction, index) => {
+    if (typeof instruction === "object") return instruction;
+
+    return {
+      "@type": "HowToStep",
+      "position": index + 1,
+      "text": instruction
+    };
+  });
+}
+
+function faqEntity(canonicalUrl, faqItems = []) {
+  if (!Array.isArray(faqItems) || !faqItems.length) return null;
+
+  return {
+    "@type": "FAQPage",
+    "@id": `${canonicalUrl}#faq`,
+    "url": canonicalUrl,
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+}
+
+function buildBaseGraph() {
+  return [
+    siteEntity(),
+    authorEntity(),
+    organisationEntity()
+  ];
+}
+
+function pushIfPresent(array, item) {
+  if (item) array.push(item);
+}
+
+function toDateOnly(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toISOString().slice(0, 10);
+}
+
+function latestDate(...values) {
+  const dates = values
+    .flat()
+    .map(toDateOnly)
+    .filter(Boolean)
+    .sort();
+
+  return dates.at(-1) || null;
+}
+
+function timelineDatesForTag(timeline = [], tag) {
+  return timeline
+    .filter(entry => entry.tags?.includes(tag))
+    .map(entry => entry.updated || entry.date);
 }
 
 // ---------- Build one post ----------
@@ -165,40 +267,54 @@ function buildPost(post) {
     .join("");
 
   const isRecipe = post.category === "Recipe";
+  const extras = structuredDataExtras.posts?.[post.id] || {};
+  const recipeExtras = extras.recipe || {};
+
+  const fallbackKeywords = (post.tags || []).join(", ");
+
+  const articleEntity = {
+    "@type": isRecipe ? "Recipe" : "BlogPosting",
+    "@id": `${canonicalUrl}#article`,
+    "mainEntityOfPage": canonicalUrl,
+    "headline": metaTitle,
+    "name": cleanTitle(post.title),
+    "description": metaDescription,
+    "image": [ogImage],
+    "author": { "@id": `${SITE_URL}/about/#claire-smid` },
+    "publisher": { "@id": `${SITE_URL}/#organization` },
+    "datePublished": post.date,
+    "dateModified": post.updated || post.date,
+    ...(isRecipe ? {
+      "recipeCategory": recipeExtras.recipeCategory || (post.tags?.includes("sweet") ? "Dessert" : "Main course"),
+      "recipeCuisine": recipeExtras.recipeCuisine || (post.tags?.includes("asian") ? "Asian" : undefined),
+      "keywords": keywordsText(recipeExtras.keywords, fallbackKeywords),
+      ...recipeExtras,
+      ...(recipeExtras.recipeInstructions ? {
+        "recipeInstructions": recipeInstructionSteps(recipeExtras.recipeInstructions)
+      } : {})
+    } : {
+      "keywords": fallbackKeywords,
+      "articleSection": post.category
+    })
+  };
+
+  const graph = buildBaseGraph();
+
+  graph.push(articleEntity);
+  graph.push(
+    breadcrumbEntity([
+      { name: "Home", url: `${SITE_URL}/` },
+      { name: "Archive", url: `${SITE_URL}/archive/` },
+      { name: cleanTitle(post.title), url: canonicalUrl }
+    ])
+  );
+
+  pushIfPresent(graph, faqEntity(canonicalUrl, extras.faq));
 
   const structuredData = jsonLdScript({
     "@context": "https://schema.org",
-    "@graph": [
-      siteEntity(),
-      authorEntity(),
-      {
-        "@type": isRecipe ? "Recipe" : "BlogPosting",
-        "@id": `${canonicalUrl}#article`,
-        "mainEntityOfPage": canonicalUrl,
-        "headline": metaTitle,
-        "name": post.title.replace(/^[^\w]+/, ""),
-        "description": metaDescription,
-        "image": [ogImage],
-        "author": { "@id": `${SITE_URL}/about/#claire-smid` },
-        "publisher": { "@id": `${SITE_URL}/#organization` },
-        "datePublished": post.date,
-        "dateModified": post.updated || post.date,
-        ...(isRecipe ? {
-          "recipeCategory": post.tags?.includes("sweet") ? "Dessert" : "Main course",
-          "recipeCuisine": post.tags?.includes("asian") ? "Asian" : undefined,
-          "keywords": (post.tags || []).join(", ")
-        } : {
-          "keywords": (post.tags || []).join(", "),
-          "articleSection": post.category
-        })
-      },
-      breadcrumbEntity([
-        { name: "Home", url: `${SITE_URL}/` },
-        { name: "Archive", url: `${SITE_URL}/archive/` },
-        { name: post.title.replace(/^[^\w]+/, ""), url: canonicalUrl }
-      ])
-    ]
-  });  
+    "@graph": graph
+  });
 
   const html = template
     .replaceAll("{{META_TITLE}}", escapeHtml(metaTitle))
@@ -230,7 +346,7 @@ function buildUpdate(update) {
     update.metaDescription ||
     update.excerpt ||
     update.summary ||
-    `An update from Soft Alchemy${parentPost ? ` about ${parentPost.title.replace(/^[^\w]+/, "")}` : ""}.`;
+    `An update from Soft Alchemy${parentPost ? ` about ${cleanTitle(parentPost.title)}` : ""}.`;
 
   const canonicalUrl = `${SITE_URL}/update/${update.id}/`;
 
@@ -247,37 +363,44 @@ function buildUpdate(update) {
 
   const author = update.author || "Claire Smid";
   const publishedTime = update.date || "";
+  const extras = structuredDataExtras.updates?.[update.id] || {};
+
+  const articleEntity = {
+    "@type": "BlogPosting",
+    "@id": `${canonicalUrl}#article`,
+    "mainEntityOfPage": canonicalUrl,
+    "headline": metaTitle,
+    "name": cleanTitle(update.title),
+    "description": metaDescription,
+    "image": [ogImage],
+    "author": { "@id": `${SITE_URL}/about/#claire-smid` },
+    "publisher": { "@id": `${SITE_URL}/#organization` },
+    "datePublished": update.date,
+    "dateModified": update.updated || update.date,
+    "articleSection": update.category || update.room || "Update",
+    "keywords": [
+      update.project,
+      update.status,
+      ...(update.tags || [])
+    ].filter(Boolean).join(", ")
+  };
+
+  const graph = buildBaseGraph();
+
+  graph.push(articleEntity);
+  graph.push(
+    breadcrumbEntity([
+      { name: "Home", url: `${SITE_URL}/` },
+      { name: "Archive", url: `${SITE_URL}/archive/` },
+      { name: cleanTitle(update.title), url: canonicalUrl }
+    ])
+  );
+
+  pushIfPresent(graph, faqEntity(canonicalUrl, extras.faq));
 
   const structuredData = jsonLdScript({
     "@context": "https://schema.org",
-    "@graph": [
-      siteEntity(),
-      authorEntity(),
-      {
-        "@type": "BlogPosting",
-        "@id": `${canonicalUrl}#article`,
-        "mainEntityOfPage": canonicalUrl,
-        "headline": metaTitle,
-        "name": update.title.replace(/^[^\w]+/, ""),
-        "description": metaDescription,
-        "image": [ogImage],
-        "author": { "@id": `${SITE_URL}/about/#claire-smid` },
-        "publisher": { "@id": `${SITE_URL}/#organization` },
-        "datePublished": update.date,
-        "dateModified": update.updated || update.date,
-        "articleSection": update.category || update.room || "Update",
-        "keywords": [
-          update.project,
-          update.status,
-          ...(update.tags || [])
-        ].filter(Boolean).join(", ")
-      },
-      breadcrumbEntity([
-        { name: "Home", url: `${SITE_URL}/` },
-        { name: "Archive", url: `${SITE_URL}/archive/` },
-        { name: update.title.replace(/^[^\w]+/, ""), url: canonicalUrl }
-      ])
-    ]
+    "@graph": graph
   });
 
   const html = updateTemplate
@@ -327,15 +450,19 @@ function buildPlant(plant) {
       {
         "@type": "ProfilePage",
         "@id": `${canonicalUrl}#profile`,
-        "mainEntityOfPage": canonicalUrl,
-        "name": plant.name,
+        "url": canonicalUrl,
+        "name": `${plant.name} | Soft Alchemy Plant Profile`,
         "description": metaDescription,
         "image": [ogImage],
-        "dateCreated": plant.started,
-        "about": {
+        "dateCreated": `${plant.started}T00:00:00Z`,
+        "mainEntity": {
           "@type": "Thing",
-          "name": plant.name,
-          "description": metaDescription
+          "@id": `${canonicalUrl}#plant`,
+          "name": plant.variety && plant.variety !== "-"
+            ? `${plant.name} (${plant.variety.replace(/<br>/g, ", ")})`
+            : plant.name,
+          "description": metaDescription,
+          "image": ogImage
         }
       },
       breadcrumbEntity([
@@ -361,23 +488,46 @@ function buildPlant(plant) {
 // ---------- Generate Sitemap ----------
 function buildSitemap() {
   const staticUrls = [
-    "/",
-    "/about/",
-    "/kitchen/",
-    "/kitchen/fermentation/",
-    "/study/",
-    "/study/timeline/",
-    "/garden/",
-    "/garden/residents/",
-    "/library/",
-    "/archive/"
+    { url: "/", lastmod: latestDate(posts.map(p => p.updated || p.date), updates.map(u => u.updated || u.date)) },
+    { url: "/about/", lastmod: null },
+    { url: "/kitchen/", lastmod: latestDate(posts.filter(p => p.category === "Recipe").map(p => p.updated || p.date)) },
+    { url: "/kitchen/fermentation/", lastmod: latestDate(updates.filter(u => u.room === "fermentation" || u.tags?.includes("fermentation")).map(u => u.updated || u.date)) },
+    { url: "/study/", lastmod: latestDate(posts.filter(p => p.category === "Study").map(p => p.updated || p.date), updates.filter(u => u.room === "study").map(u => u.updated || u.date)) },
+    { url: "/study/timeline/", lastmod: latestDate(updates.filter(u => u.room === "study").map(u => u.updated || u.date)) },
+    { url: "/garden/", lastmod: latestDate(gardenTimeline.map(e => e.updated || e.date)) },
+    {
+      url: "/garden/residents/", lastmod: latestDate(
+        plants.map(p => p.updated || p.started),
+        gardenTimeline.map(e => e.updated || e.date)
+      ) },
+    { url: "/library/", lastmod: latestDate(posts.filter(p => p.tags?.includes("books")).map(p => p.updated || p.date)) },
+    { url: "/archive/", lastmod: latestDate(posts.map(p => p.updated || p.date), updates.map(u => u.updated || u.date)) }
   ];
 
-  const postUrls = posts.map(post => `/post/${post.id}/`);
+  const postUrls = posts.map(post => {
+    const linkedUpdates = updates
+      .filter(update => update.originalPost === post.id)
+      .map(update => update.updated || update.date);
 
-  const updateUrls = updates.map(update => `/update/${update.id}/`);
+    return {
+      url: `/post/${post.id}/`,
+      lastmod: latestDate(post.updated || post.date, linkedUpdates)
+    };
+  });
 
-  const plantUrls = plants.map(plant => `/plant/${plant.id}/`);
+  const updateUrls = updates.map(update => ({
+    url: `/update/${update.id}/`,
+    lastmod: latestDate(update.updated || update.date)
+  }));
+
+  const plantUrls = plants.map(plant => ({
+    url: `/plant/${plant.id}/`,
+    lastmod: latestDate(
+      plant.updated,
+      plant.started,
+      timelineDatesForTag(gardenTimeline, plant.id)
+    )
+  }));
 
   const allUrls = [
     ...staticUrls,
@@ -388,9 +538,10 @@ function buildSitemap() {
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map(url => `
+${allUrls.map(entry => `
   <url>
-    <loc>${SITE_URL}${url}</loc>
+    <loc>${SITE_URL}${entry.url}</loc>
+    ${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ""}
   </url>`).join("")}
 </urlset>
 `;

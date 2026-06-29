@@ -630,6 +630,7 @@ function setCanonical(url) {
 // -----------------------------
 function filterPosts(updateURL = true) {
   const search = searchInput?.value.toLowerCase().trim() || "";
+  trackArchiveSearch(search);
   const showPosts = showPostsInput?.checked ?? true;
   const showUpdates = showUpdatesInput?.checked ?? false;
 
@@ -1850,6 +1851,92 @@ function renderPlantTimelineEntry(entry) {
     </article>
   `;
 }
+
+// -----------------------------
+// ANALYTICS: LINK CLICK TRACKING
+// -----------------------------
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
+  if (!link || typeof gtag !== "function") return;
+
+  const href = link.href;
+  if (!href) return;
+
+  const linkUrl = new URL(href);
+  const isExternal = linkUrl.hostname !== window.location.hostname;
+
+  gtag("event", isExternal ? "outbound_click" : "internal_click", {
+    link_url: href,
+    link_path: linkUrl.pathname,
+    link_text: link.textContent.trim().slice(0, 100),
+    link_domain: linkUrl.hostname,
+    from_path: window.location.pathname,
+    page_title: document.title,
+    transport_type: "beacon"
+  });
+});
+
+// -----------------------------
+// ANALYTICS: SEARCH TRACKING
+// -----------------------------
+let lastTrackedSearch = "";
+let searchTrackingTimer = null;
+
+function trackArchiveSearch(searchTerm) {
+  if (!searchTerm || searchTerm.length < 2) return;
+  if (searchTerm === lastTrackedSearch) return;
+
+  clearTimeout(searchTrackingTimer);
+
+  searchTrackingTimer = setTimeout(() => {
+    if (typeof gtag !== "function") return;
+
+    lastTrackedSearch = searchTerm;
+
+    gtag("event", "site_search", {
+      search_term: searchTerm,
+      page_location: window.location.href,
+      page_title: document.title
+    });
+  }, 800);
+}
+
+// -----------------------------
+// ANALYTICS: SCROLL DEPTH TRACKING
+// -----------------------------
+const scrollMilestones = [25, 50, 75, 90];
+const trackedScrollMilestones = new Set();
+
+function getScrollPercent() {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  if (docHeight <= 0) return 100;
+
+  return Math.round((scrollTop / docHeight) * 100);
+}
+
+function trackScrollDepth() {
+  if (typeof gtag !== "function") return;
+
+  const percent = getScrollPercent();
+
+  scrollMilestones.forEach(milestone => {
+    if (percent >= milestone && !trackedScrollMilestones.has(milestone)) {
+      trackedScrollMilestones.add(milestone);
+
+      gtag("event", "scroll_depth", {
+        scroll_percent: milestone,
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+    }
+  });
+}
+
+window.addEventListener("scroll", trackScrollDepth, { passive: true });
 
 // -----------------------------
 // FOOTER

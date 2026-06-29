@@ -46,6 +46,9 @@
     "isPartOf": {
       "@id": "https://softalchemy.uk/#website"
     },
+    "mainEntity": {
+      "@id": "https://softalchemy.uk/garden/residents/#itemlist"
+    },
     "about": [
       "Container Gardening",
       "Vegetables",
@@ -101,6 +104,37 @@
     window.addEventListener("DOMContentLoaded", () => {
       renderPlantGallery();
     });
+  </script>
+  <script>
+    function addPlantItemListSchema() {
+      if (typeof plantResidents === "undefined") return;
+
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "@id": "https://softalchemy.uk/garden/residents/#itemlist",
+        "url": "https://softalchemy.uk/garden/residents/",
+        "name": "Garden Residents",
+        "description": "A list of plant profiles from the Soft Alchemy container garden.",
+        "numberOfItems": plantResidents.length,
+        "itemListElement": plantResidents.map((plant, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "url": `https://softalchemy.uk/plant/${plant.id}/`,
+          "name": plant.variety && plant.variety !== "-"
+            ? `${plant.name} (${plant.variety.replace(/<br>/g, ", ")})`
+            : plant.name
+        }))
+      };
+
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(schema, null, 2);
+
+      document.head.appendChild(script);
+    }
+
+    window.addEventListener("DOMContentLoaded", addPlantItemListSchema);
   </script>
 </body>
 
