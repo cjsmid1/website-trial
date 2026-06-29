@@ -26,7 +26,7 @@ if (fs.existsSync(SITEMAP_PATH)) {
   fs.rmSync(SITEMAP_PATH, { force: true });
 }
 
-// ---------- Load js data files ----------
+// ---------- Load js files ----------
 const postsFile = fs.readFileSync(
   path.join(__dirname, "js", "posts.js"),
   "utf8"
@@ -48,7 +48,14 @@ const structuredDataFile = fs.existsSync(path.join(__dirname, "js", "structured-
   ? fs.readFileSync(path.join(__dirname, "js", "structured-data.js"), "utf8")
   : "const structuredData = {};";
 
+const renderHelpersFile = fs.readFileSync(
+  path.join(__dirname, "js", "render-helpers.js"),
+  "utf8"
+);  
+
 const sandbox = {};
+sandbox.module = { exports: {} };
+sandbox.exports = sandbox.module.exports;
 vm.createContext(sandbox);
 
 vm.runInContext(postsFile + "\nthis.posts = posts;", sandbox);
@@ -56,12 +63,14 @@ vm.runInContext(updatesFile + "\nthis.updates = updates;", sandbox);
 vm.runInContext(plantsFile + "\nthis.plantResidents = plantResidents;", sandbox);
 vm.runInContext(structuredDataFile + "\nthis.structuredData = structuredData;", sandbox);
 vm.runInContext(gardenTimelineFile + "\nthis.gardenTimeline = gardenTimeline;", sandbox);
+vm.runInContext(renderHelpersFile, sandbox);
 
 const posts = sandbox.posts;
 const updates = sandbox.updates;
 const plants = sandbox.plantResidents;
 const structuredDataExtras = sandbox.structuredData || {};
 const gardenTimeline = sandbox.gardenTimeline || [];
+const renderHelpers = sandbox.module.exports;
 
 if (!Array.isArray(posts)) {
   throw new Error("Could not load posts from js/posts.js");
@@ -93,18 +102,14 @@ const plantTemplate = fs.readFileSync(
 );
 
 // ---------- Helpers ----------
+const { renderPostBody, formatTag, renderFullUpdateCard, renderPlantProfile, getPlantTimelineEntries } = renderHelpers;
+
 function escapeHtml(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll('"', "&quot;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
-}
-
-function formatTag(tag = "") {
-  return tag
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, c => c.toUpperCase());
 }
 
 function absoluteImageUrl(imagePath) {
@@ -258,6 +263,8 @@ function buildPost(post) {
   const author = post.author || "Claire Smid";
   const publishedTime = post.date || "";
 
+  const postBodyHtml = renderPostBody(post, updates);
+
   const tagsHtml = (post.tags || [])
     .map(tag => `
       <span class="tag" data-tag="${escapeHtml(tag)}">
@@ -326,7 +333,8 @@ function buildPost(post) {
     .replaceAll("{{AUTHOR}}", escapeHtml(author))
     .replaceAll("{{PUBLISHED_TIME}}", escapeHtml(publishedTime))
     .replaceAll("{{STRUCTURED_DATA}}", structuredData)
-    .replaceAll("{{POST_ID}}", escapeHtml(post.id));
+    .replaceAll("{{POST_ID}}", escapeHtml(post.id))
+    .replaceAll("{{POST_BODY}}", postBodyHtml);
 
   fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");
 }
@@ -364,6 +372,7 @@ function buildUpdate(update) {
   const author = update.author || "Claire Smid";
   const publishedTime = update.date || "";
   const extras = structuredDataExtras.updates?.[update.id] || {};
+  const updateBodyHtml = renderFullUpdateCard(update, { showPageLink: true });
 
   const articleEntity = {
     "@type": "BlogPosting",
@@ -412,7 +421,8 @@ function buildUpdate(update) {
     .replaceAll("{{AUTHOR}}", escapeHtml(author))
     .replaceAll("{{PUBLISHED_TIME}}", escapeHtml(publishedTime))
     .replaceAll("{{STRUCTURED_DATA}}", structuredData)
-    .replaceAll("{{UPDATE_ID}}", escapeHtml(update.id));
+    .replaceAll("{{UPDATE_ID}}", escapeHtml(update.id))
+    .replaceAll("{{UPDATE_BODY}}", updateBodyHtml);
 
   fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");
 }
@@ -438,10 +448,10 @@ function buildPlant(plant) {
     "/images/soft-alchemy-preview.jpg"
   );
 
-  const imageAlt =
-    plant.imageAlt ||
-    plant.alt ||
-    plant.name;
+  const imageAlt = plant.imageAlt || plant.alt || plant.name;
+
+  const relatedEntries = getPlantTimelineEntries(plant.id, gardenTimeline);
+  const plantBodyHtml = renderPlantProfile(plant, relatedEntries, { showPageLink: true });  
 
   const structuredData = jsonLdScript({
     "@context": "https://schema.org",
@@ -480,7 +490,8 @@ function buildPlant(plant) {
     .replaceAll("{{OG_IMAGE}}", ogImage)
     .replaceAll("{{IMAGE_ALT}}", escapeHtml(imageAlt))
     .replaceAll("{{STRUCTURED_DATA}}", structuredData)
-    .replaceAll("{{PLANT_ID}}", escapeHtml(plant.id));
+    .replaceAll("{{PLANT_ID}}", escapeHtml(plant.id))
+    .replaceAll("{{PLANT_BODY}}", plantBodyHtml);
 
   fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");
 }

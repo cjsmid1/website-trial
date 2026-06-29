@@ -101,51 +101,6 @@ document.addEventListener("click", (e) => {
 // -----------------------------
 // ABOUT EXPLORATION
 // -----------------------------
-const roomData = {
-  garden: {
-    emoji: "🌿",
-    title: "The Garden",
-    url: "/garden/index.html",
-    description: "Container gardening, hopeful seedlings, and occasional slug negotiations."
-  },
-  kitchen: {
-    emoji: "🍯",
-    title: "The Kitchen",
-    url: "/kitchen/index.html",
-    description: "Ferments bubbling, cosy recipes, and experiments that may or may not be edible."
-  },
-  study: {
-    emoji: "📝",
-    title: "The Study",
-    url: "/study/index.html",
-    description: "Journal reflections, organisational systems, and attempts to turn chaos into something useful."
-  },
-  echo: {
-    emoji: "🐾",
-    title: "Echo's Corner",
-    url: "/archive/index.html?tag=dog-approved",
-    description: "Dog-approved adventures, a very strange birthday cake, and important announcements about birds outside."
-  },
-  library: {
-    emoji: "📚",
-    title: "The Library",
-    url: "/library/index.html",
-    description: "Story recommendations, board games, and book-related joy."
-  },
-  archive: {
-    emoji: "📜",
-    title: "The Archive",
-    url: "/archive/index.html",
-    description: "Every recipe, experiment, recommendation, success, failure, and curious detour collected in one place."
-  },
-  dungeon: {
-    emoji: "⚔️",
-    title: "The Dungeon",
-    url: "#",
-    description: "Here be dragons: a deep dive into D&D is still being summoned."
-  }
-};
-
 let activeRoom = null;
 
 document.addEventListener("click", (e) => {
@@ -266,12 +221,6 @@ document.addEventListener("change", (e) => {
 // -----------------------------
 // FORMAT TAGS
 // -----------------------------
-function formatTag(tag) {
-  return tag
-    .replace(/-/g, " ")              // replace hyphens with spaces
-    .replace(/\b\w/g, c => c.toUpperCase()); // capitalise each word
-}
-
 function getUpdateTags(update) {
   const parentPost = posts.find(
     post => post.id === update.originalPost
@@ -286,32 +235,6 @@ function getUpdateTags(update) {
 // -----------------------------
 // RENDER BLOG POSTS
 // -----------------------------
-function createPostPreviewHTML(post, options = {}) {
-  const { activeTag = null } = options;
-
-  return `
-    <div class="title-row">
-      <h2>
-        <a href="/post/${post.id}">${post.title}</a>
-      </h2>
-
-      <div class="category-title ${post.category.toLowerCase()}">
-        ${post.category}
-      </div>
-    </div>
-
-    <p>${post.excerpt}</p>
-
-    <div class="tag-list">
-      ${post.tags.map(tag => `
-        <span class="tag ${tag === activeTag ? "active" : ""}" data-tag="${tag}">
-          ${formatTag(tag)}
-        </span>
-      `).join("")}
-    </div>
-  `;
-}
-
 function createUpdatePreviewHTML(update) {
   const category = update.category || update.room || "Update";
   return `
@@ -418,6 +341,8 @@ document.addEventListener("click", (e) => {
     console.warn("renderFullUpdateCard is not loaded");
     return;
   }
+
+  trackLightboxOpen(updates[updateIndex], "update");
 
   openSiteModal("", {
     contentClass: "card update-modal-content",
@@ -540,7 +465,7 @@ function updatePostMetadata(post) {
   setMetaProperty("og:url", url);
   setMetaProperty("og:image", image);
   setMetaProperty("article:published_time", post.date);
-  
+
   setMeta("author", "Claire Smid");
   setMeta("twitter:card", "summary_large_image");
   setMeta("twitter:title", title);
@@ -806,48 +731,6 @@ function renderRelatedPost(currentPost) {
 }
 
 // -----------------------------
-// POST ROOM LINK
-// -----------------------------
-const postRoomMap = {
-  Recipe: "kitchen",
-  Garden: "garden",
-  Study: "study",
-};
-
-function getPostRoomKey(post) {
-  if (post.tags?.includes("books")) return "library";
-  if (post.tags?.includes("dog-approved")) return "echo";
-
-  return postRoomMap[post.category] || null;
-}
-
-function renderRoomLink(post) {
-  const roomKey = getPostRoomKey(post);
-  if (!roomKey) return "";
-
-  const room = roomData[roomKey];
-  if (!room) return "";
-
-  const roomLinkText = {
-    kitchen: "Raid more kitchen experiments →",
-    garden: "See what else is growing →",
-    study: "Continue exploring the Study →",
-    library: "Wander into the library →",
-    echo: "Visit Echo’s corner →"
-  };
-
-  const linkText = roomLinkText[roomKey] || `More from ${room.title} →`;
-
-  return `
-    <div class="related-footer">
-      <h3><a href="${room.url}">
-        ${room.emoji} ${linkText}
-      </a></h3>
-    </div>
-  `;
-}
-
-// -----------------------------
 // TAG CLICK HANDLER
 // -----------------------------
 function setTagFilter(tag) {
@@ -898,24 +781,7 @@ if (postContainer) {
 
   if (post) {
     updatePostMetadata(post);
-    // Inject HTML
-    postContainer.innerHTML = `
-      <div class="title-row">
-        <h1>${post.title}</h1>
-        <div class="category-title ${post.category.toLowerCase()}">${post.category}</div>
-      </div>
-      <div class="tag-list">
-        ${post.tags.map(tag => `
-          <span class="tag" data-tag="${tag}">${formatTag(tag)}</span>
-        `).join("")}
-      </div>
-      <div class="content">${post.content}</div>
-
-      ${typeof renderPostUpdateSection === "function"
-        ? renderPostUpdateSection(post.id)
-        : ""}
-      ${renderRoomLink(post)}
-    `;
+    postContainer.innerHTML = renderPostBody(post, updates);
 
     const pageTitle = post.metaTitle || `${post.title} | Soft Alchemy`;
 
@@ -1003,9 +869,21 @@ if (singlePlantContainer) {
   const plant = plantResidents.find(p => p.id === plantId);
 
   if (plant) {
-    singlePlantContainer.innerHTML = renderPlantProfile(plant, {
+    const relatedEntries = getPlantTimelineEntries(plantId, gardenTimeline);
+
+    singlePlantContainer.innerHTML = renderPlantProfile(plant, relatedEntries, {
       showPageLink: false
     });
+
+    if (relatedEntries.length) {
+      setTimeout(() => {
+        renderTimeline(`plant-timeline-${plant.id}`, relatedEntries, {
+          order: "asc",
+          timelineMode: "compact",
+          showMonthMarker: true
+        });
+      }, 0);
+    }
   }
 }
 
@@ -1125,11 +1003,28 @@ function createPlainCollageImage(item) {
       );
 
       if (plantIndex !== -1) {
+        trackLightboxOpen(plantResidents[plantIndex], "plant");
+
         openSiteModal("", {
           contentClass: "card update-modal-content",
           items: plantResidents,
           currentIndex: plantIndex,
-          renderItem: renderPlantProfile
+          renderItem: (plant) => renderPlantProfile(
+            plant,
+            getPlantTimelineEntries(plant.id, gardenTimeline)
+          ),
+          afterRender: (plant, modalEl) => {
+            if (!plant) return;
+
+            const relatedEntries = getPlantTimelineEntries(plant.id, gardenTimeline);
+            if (!relatedEntries.length) return;
+
+            renderTimeline(`plant-timeline-${plant.id}`, relatedEntries, {
+              order: "asc",
+              timelineMode: "compact",
+              showMonthMarker: true
+            });
+          }
         });
 
         return;
@@ -1363,6 +1258,8 @@ function setupBookshelfUpdateModals(shelf) {
         : [];
 
       if (linkedUpdates.length) {
+        trackLightboxOpen(linkedUpdates[0], "update");
+
         openSiteModal("", {
           contentClass: "card update-modal-content",
           items: linkedUpdates,
@@ -1380,12 +1277,28 @@ function setupBookshelfUpdateModals(shelf) {
         : -1;
 
       if (plantIndex === -1) return;
+      trackLightboxOpen(plantResidents[plantIndex], "plant");
 
       openSiteModal("", {
         contentClass: "card update-modal-content",
         items: plantResidents,
         currentIndex: plantIndex,
-        renderItem: renderPlantProfile
+        renderItem: (plant) => renderPlantProfile(
+          plant,
+          getPlantTimelineEntries(plant.id, gardenTimeline)
+        ),
+        afterRender: (plant, modalEl) => {
+          if (!plant) return;
+
+          const relatedEntries = getPlantTimelineEntries(plant.id, gardenTimeline);
+          if (!relatedEntries.length) return;
+
+          renderTimeline(`plant-timeline-${plant.id}`, relatedEntries, {
+            order: "asc",
+            timelineMode: "compact",
+            showMonthMarker: true
+          });
+        }
       });
     });
   });
@@ -1666,6 +1579,13 @@ function openSiteModal(contentHtml, options = {}) {
 
   function renderModal() {
     modal.innerHTML = getModalInnerHtml();
+
+    if (typeof options.afterRender === "function") {
+      options.afterRender(
+        hasNavigation ? options.items[currentIndex] : null,
+        modal
+      );
+    }
   }
 
   function moveModal(direction) {
@@ -1676,11 +1596,11 @@ function openSiteModal(contentHtml, options = {}) {
 
     renderModal();
   }
-
-  renderModal();
-
+  
   document.body.appendChild(modal);
   document.body.classList.add("lightbox-open");
+
+  renderModal();
 
   function closeModal() {
     modal.remove();
@@ -1743,104 +1663,6 @@ document.addEventListener("click", (e) => {
 // -----------------------------
 // PLANT PROFILES
 // -----------------------------
-function renderPlantProfile(plant, options = {}) {
-  const relatedEntries = getPlantTimelineEntries(plant.id);
-  const timelineId = `plant-timeline-${plant.id}`;
-  const imageSize = plant.imageSize || "landscape";
-  const usesSideBySideLayout = ["portrait", "square"].includes(imageSize);
-  const { showPageLink = true } = options;
-
-  setTimeout(() => {
-    if (relatedEntries.length) {
-      renderTimeline(timelineId, relatedEntries, {
-        order: "asc",
-        timelineMode: "compact",
-        showMonthMarker: true
-      });
-    }
-  }, 0);
-
-  const factGrid = `
-    <div class="plant-profile-facts">
-      <p><strong>Started:</strong><br>${formatDate(plant.started)}</p>
-      <p><strong>Status:</strong><br>${plant.status}</p>
-      ${plant.variety ? `<p><strong>Variety:</strong><br>${plant.variety}</p>` : ""}
-      <p><strong>Type:</strong><br>${plant.type}</p>
-    </div>
-  `;
-
-  const imageHtml = `
-    <img
-      src="${plant.image}"
-      alt="${plant.name}"
-      class="lightbox-image plant-profile-image"
-    >
-  `;
-
-  const noteHtml = `<p class="plant-profile-note">${plant.note}</p>`;
-
-  const storyHtml = relatedEntries.length ? `
-    <details class="post-update-drawer">
-      <summary>
-        The story so far...
-        <span>${relatedEntries.length} ${relatedEntries.length === 1 ? "entry" : "entries"}</span>
-      </summary>
-
-      <div
-        id="${timelineId}"
-        class="garden-timeline plant-profile-timeline-render"
-      ></div>
-      </details>
-  ` : "";
-
-  const pageLinkHtml = showPageLink ? `
-  <p>
-    <a href="/plant/${plant.id}/">Open plant page →</a>
-  </p>
-` : "";
-
-  const moreGardenResidents = !showPageLink ? `
-  <div class="related-footer"><h3><a href="/garden/residents/index.html">🪴 More from the garden residents →</a></h3></div>
-` : "";
-
-  const profileBody = usesSideBySideLayout ? `
-    <div class="plant-profile-main">
-      <div class="plant-profile-photo">
-        ${imageHtml}
-      </div>
-
-      <div class="plant-profile-info">
-        ${factGrid}
-        ${noteHtml}
-      </div>
-    </div>
-
-    ${storyHtml}
-  ` : `
-    ${factGrid}
-    ${imageHtml}
-    ${noteHtml}
-    ${storyHtml}
-  `;
-
-  return `
-    <article class="plant-profile-card plant-profile-card--${imageSize}">
-      <h2>${plant.emoji} ${plant.name}</h2>
-      ${profileBody}
-      ${pageLinkHtml}
-      ${moreGardenResidents}
-    </article>
-  `;
-}
-
-function getPlantTimelineEntries(plantId) {
-  if (typeof gardenTimeline === "undefined") return [];
-
-  return gardenTimeline
-    .filter(entry => entry.tags?.includes(plantId))
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
-}
-
 function renderPlantTimelineEntry(entry) {
   return `
     <article class="plant-mini-timeline-entry timeline-${entry.type}">
@@ -1850,6 +1672,23 @@ function renderPlantTimelineEntry(entry) {
   })}
     </article>
   `;
+}
+
+// -----------------------------
+// ANALYTICS: LIGHTBOX TRACKING
+// -----------------------------
+function trackLightboxOpen(item, contentType = "unknown") {
+  if (typeof gtag !== "function" || !item) return;
+
+  gtag("event", "lightbox_open", {
+    content_type: contentType,
+    content_id: item.id || "",
+    content_title: item.title || item.name || "",
+    room: item.room || "",
+    project: item.project || item.id || "",
+    page_path: window.location.pathname,
+    page_title: document.title
+  });
 }
 
 // -----------------------------
@@ -1930,7 +1769,8 @@ function trackScrollDepth() {
       gtag("event", "scroll_depth", {
         scroll_percent: milestone,
         page_path: window.location.pathname,
-        page_title: document.title
+        page_title: document.title,
+        engagement_time_msec: performance.now()
       });
     }
   });
@@ -1997,15 +1837,3 @@ document.addEventListener("DOMContentLoaded", () => {
   applyTheme();
   initFlyingQuotes();
 });
-
-
-// -----------------------------
-// UTILS
-// -----------------------------
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric"
-  });
-}

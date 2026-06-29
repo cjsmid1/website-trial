@@ -493,6 +493,10 @@
     box-shadow: 0 6px 18px rgba(60, 45, 30, 0.08);
   }
 
+    .plant-profile-timeline-render .timeline-marker-layer {
+      left: 1rem;
+    }
+  
 }
 
 @media (max-width: 600px) {
