@@ -145,7 +145,17 @@ function authorEntity() {
     "@type": "Person",
     "@id": `${SITE_URL}/about/#claire-smid`,
     "name": "Claire Smid",
-    "url": `${SITE_URL}/about/`
+    "url": `${SITE_URL}/about/`,
+    "description": "Creator of Soft Alchemy, documenting real-world experiments in container gardening, fermentation, cooking, self-improvement and life with a Papillon puppy.",
+    "sameAs": [],
+    "knowsAbout": [
+      "Container gardening",
+      "Fermentation",
+      "Home cooking",
+      "Habit building",
+      "Dog training",
+      "Personal development"
+    ]
   };
 }
 
@@ -213,6 +223,50 @@ function faqEntity(canonicalUrl, faqItems = []) {
   };
 }
 
+function recipeEntity(canonicalUrl, update, recipe = {}) {
+  if (!recipe || !Object.keys(recipe).length) return null;
+
+  return {
+    "@type": "Recipe",
+    "@id": `${canonicalUrl}#recipe`,
+    "mainEntityOfPage": canonicalUrl,
+
+    "isPartOf": {
+      "@id": `${canonicalUrl}#article`
+    },
+
+    "headline": update.metaTitle || update.title,
+    "name": recipe.name || cleanTitle(update.title),
+    "description":
+      recipe.description ||
+      update.metaDescription ||
+      update.summary ||
+      "",
+    "image": [
+      absoluteImageUrl(
+        update.image || "/images/soft-alchemy-preview.jpg"
+      )
+    ],
+    "author": {
+      "@id": `${SITE_URL}/about/#claire`
+    },
+    "publisher": {
+      "@id": `${SITE_URL}/#organization`
+    },
+    "datePublished": update.date,
+    "dateModified": update.updated || update.date,
+
+    ...recipe,
+
+    ...(recipe.recipeInstructions
+      ? {
+        "recipeInstructions":
+          recipeInstructionSteps(recipe.recipeInstructions)
+      }
+      : {})
+  };
+}
+
 function buildBaseGraph() {
   return [
     siteEntity(),
@@ -275,7 +329,9 @@ function buildPost(post) {
 
   const isRecipe = post.category === "Recipe";
   const extras = structuredDataExtras.posts?.[post.id] || {};
-  const recipeExtras = extras.recipe || {};
+  const recipeExtras = isRecipe
+    ? { ...extras, ...(extras.recipe || {}) }
+    : {};
 
   const fallbackKeywords = (post.tags || []).join(", ");
 
@@ -397,6 +453,10 @@ function buildUpdate(update) {
   const graph = buildBaseGraph();
 
   graph.push(articleEntity);
+  pushIfPresent(
+    graph,
+    recipeEntity(canonicalUrl, update, extras.recipe)
+  );
   graph.push(
     breadcrumbEntity([
       { name: "Home", url: `${SITE_URL}/` },
@@ -458,12 +518,12 @@ function buildPlant(plant) {
     "@graph": [
       siteEntity(),
       {
-        "@type": "ProfilePage",
-        "@id": `${canonicalUrl}#profile`,
+        "@type": "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
         "url": canonicalUrl,
         "name": `${plant.name} | Soft Alchemy Plant Profile`,
         "description": metaDescription,
-        "image": [ogImage],
+        "image": ogImage,
         "dateCreated": `${plant.started}T00:00:00Z`,
         "mainEntity": {
           "@type": "Thing",
@@ -481,7 +541,7 @@ function buildPlant(plant) {
         { name: plant.name, url: canonicalUrl }
       ])
     ]
-  });  
+  });
 
   const html = plantTemplate
     .replaceAll("{{META_TITLE}}", escapeHtml(metaTitle))

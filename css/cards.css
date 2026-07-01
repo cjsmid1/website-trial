@@ -109,10 +109,15 @@
   gap: 1rem;
   max-width: 700px;
   margin: 0 auto;
+  align-items: start;
 }
 
 .two-column-layout+.two-column-layout {
   margin-top: 1rem;
+}
+
+.two-column-layout>section>p:first-child {
+  margin-top: -1rem;
 }
 
 /* first card bigger */
@@ -374,6 +379,10 @@
   transform: rotate(1deg);
 }
 
+.bio-image--not-square {
+  height: auto !important;
+}
+
 .intro-heading {
   display: flex;
   align-items: center;
@@ -451,7 +460,7 @@
    TABLE FORMATTING
    ----------------------------- */
 .table {
-  margin: -1rem auto 0rem;
+  margin: 0 auto;
   overflow-x: auto;
 }
 

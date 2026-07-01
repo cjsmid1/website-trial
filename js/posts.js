@@ -58,6 +58,216 @@ const sourdoughBreadTimeline = [
 
 const posts = [
 	{
+		id: "soft-alchemy",
+		date: "2026-06-30",
+		title: "🌐 Soft Alchemy: The Beginning",
+		metaTitle: "Building Soft Alchemy: How My Personal Blog Became a Virtual House",
+		metaDescription:
+			"The story of building Soft Alchemy: from abandoned portfolio site to virtual house complete with gardens, dogs, analytics obsession, Pinterest mishaps and an alarming amount of structured data.",
+		image: "/images/website/homepage-june-2026.png",
+		imageAlt: "The Soft Alchemy homepage after two months of development.",
+		category: "Study",
+		tags: ["goals", "coding", "data analysis"],
+		excerpt:
+			"The time a curiosity-driven experiment turned into a virtual house complete with garden, dog, analytics obsession and the discovery that my biggest Pinterest fan was me.",
+		content: `
+		<section class="summary-note">
+	  <div class="summary-note-label"></div>
+	  <p>Behind the screen of the first two full months of creating Soft Alchemy:<br><a href=#journey>the journey</a>, <a href=#analytics-data>analytics</a>, <a href=#lessons>lessons learned</a>, <a href=#fav-creations>favourite creations</a> and <a href=#worth-it>was it worth it?</a></p>
+	  </section>
+		<ul class="picture-list picture-rectangle">
+      <li><img class="lightbox-image" src="/images/website/homepage-oct-2025.png">Oct 2025</a></li>
+      <li><img class="lightbox-image" src="/images/website/homepage-april-2026.png">Apr 2026</a></li>
+      <li><img class="lightbox-image" src="/images/website/homepage-may-2026.png">May 2026</a></li>
+      <li><img class="lightbox-image" src="/images/website/homepage-june-2026.png">Jun 2026</a></li>
+    </ul>
+		<br>
+		<h2 id="journey">October 2025: In The Beginning...</h2>
+		<div class="bio bio--reverse">
+      <img class="bio-image bio-image--not-square lightbox-image" src="/images/website/homepage-oct-2025.png" />
+
+      <div class="bio-text">
+        <p>
+          October was a month that saw me emerge from my post job sofa gremlin state to investigate the ChatGPT fuss by indulging the temptation of creating a blog. With my own coding knowledge & AI's help, my GitHub account was put to use, this time with 3 files, GitHub Pages, and a basic template appearance. Curiosity satisfied, that is how it stayed until the following year when my growth areas saw potential.
+        </p>
+      </div>
+    </div>
+		<img class="lightbox-image" src="/images/website/github-oct-2025.png" alt="">
+		<br>
+    <h2>April 2026: In The Beginning (Attempt #2)</h2>
+		<div class="bio">
+      <img class="bio-image bio-image--not-square lightbox-image" src="/images/website/blog-growth-area-plan-april-2026.png" />
+      <div class="bio-text">
+        <p>
+          The goal was set and the plan was made. I started off strong Wednesday 1st April: the previous code repository was found, dusted off and three new pages were added - 100% increase! I now had a homepage, a blog page, and a js file ready to be populated with more than just the world's least useful mushroom burger recipe.
+					<br>
+					Naturally it wasn't until 22nd April that I realised there was only so long I could procrastinate following through, and finally created my first post: <a href="https://softalchemy.uk/post/mushroom-wellington/">mushroom wellington recipe</a>.
+        </p>
+      </div>
+    </div>
+		<p>Ultimately April finished with 5 completed posts, an about page, and most importantly, an official name complete with its own URL. Satisfied with my progress, I decided to pivot my attention to other growth areas for May, and see if I could make the occasional post in the background.</p>
+		<img class="lightbox-image" src="/images/website/github-april-2026.png" alt="">
+		<br>
+		<h2>May 2026: Building Soft Alchemy, One Room at a Time</h2>
+		<p>Turns out Soft Alchemy was not content to let me focus on other growth areas, and similarly to my tomato plants, it decided to take over. The library emerged originally as a post mid May, and the other rooms swiftly followed the day after.<br>
+		My casual personal blog was transforming into a full-time job building a virtual house. It wasn't unusual for me to still be up coding past 3am, or for James to come home from work to find me in my dressing gown on the sofa, having not moved from my laptop all day.</p>
+		<ul class="chaos-list">
+      <li>✅ Fix footer</li>
+      <li>✅ Set up HTTPS for new url</li>
+      <li>✅ Sourdough Starter Post</li>
+      <li>✅ Add bios</li>
+      <li>✅ Add Currently Reading to Homepage</li>
+      <li>✅ Add Latest Post to Homepage</li>
+      <li>✅ Library Post</li>
+      <li>✅ Find a Pretty Background</li>
+      <li>✅ Create Kitchen, Study & Garden Pages</li>
+      <li>✅ Update Navigation</li>
+      <li>✅ Decide James has Contributed Enough to Warrant a Bio</li>
+      <li>✅ Quotes Post</li>
+      <li>✅ Create "Follow the Paw Prints" Start Here Guide</li>
+      <li>✅ Ask Feedback from ChatGPT</li>
+      <li>✅ Add Recipe Pantry to the Kitchen</li>
+      <li>✅ Add Navigation Info in About Page</li>
+      <li>✅ More Recipe Posts!</li>
+      <li>✅ Add Recommended Next Post Section</li>
+      <li>✅ Create Garden Timeline</li>
+      <li>✅ Use IDE Instead of Notepad++</li>
+    </ul>
+		<p>Alongside all this, dreams of no longer writing merely for an audience of me drove me into the strange and confusing world of marketing & analytics.</p>		${divider}
+		<h2 id="analytics-data">The Data: An Introduction to Analytics</h2>
+		<p>Having had ChatGPT crush my dreams of a simple secret tracker page only 2 days after writing my first post, it didn't actually occur to me to set up Google Analytics till almost a full month later. What followed was:</p>
+		<ul>
+		<li>Unexpected visits from a random stranger in Andorra.</li>
+		<li>A surprisingly long-winded battle to remove myself from the data.</li>
+		<li>A deep dive into what exactly is Organic Social (spoiler: it means I sent my friend a link over Messenger instead of Whatsapp!).</li>
+		<li>A questionable amount of time spent staring at user counts rather than writing posts.</li>
+		</ul>
+		<p>On this final day of June, I am proud to announce that:<p>
+		<ul>
+		<li>I have yet to break the upper threshold of 6 users in a single day.
+		<img class="small-post-image lightbox-image" src="/images/website/google-analytics-may-june-2026.png" alt="">
+		</li>
+		<li>I now have a method of removing myself from the analytics so robust it took a full hour to add myself back in again for the sake of testing a new scroll tracking feature... and despite that it turns out I was still being tracked while writing this post!
+		<img class="small-post-image lightbox-image" src="/images/website/google-analytics-post-visit-june-2026.png" alt="">
+		</li>
+		<li>I have no idea how all the people from these countries found me, unless friends and family I sent links to use an impressive array of VPN countries.
+		<img class="small-post-image lightbox-image" src="/images/website/google-analytics-country-may-june-2026.png" alt="">
+		</li>
+		</ul>
+		<br>
+		<h2>The Data: Building a Pinterest Audience</h2> 
+		<p>Having used Pinterest for many years, it was always in the plan to use it as my main method of audience generation. Hence 20th May saw the creation of a new Soft Alchemy Pinterest Business Account, and the creation of my first pin! Many satisfying milestones followed: first 100 views on a pin, first total 1000 impressions, clicks on pins going up. Motivation was high and my obsession of watching the eye symbol on my pins go up was growing.</p>
+		<img class="post-image lightbox-image" src="/images/website/pinterest-impressions-june-2026.png" alt="">
+		<p>Denial, supported by both wishful thinking and repeated consultations with ChatGPT, finally met its match in the undeniable evidence provided by going on holiday. Most notably, my glorious pinterest streak ground to zero on the two days I didn't look at my account. Even more damning was the spike on the day I couldn't resist having a quick peek. All the milestones I'd been celebrating were me looking at my own pins.</p>
+		<p>Accepting that pinterest has yet to recognise my glory, I look forward to celebrating the first ever outbound click should it happen, and the growing total audience number that I know I cannot corrupt.</p>
+		<ul class="picture-list picture-rectangle">
+		<li><a href="https://uk.pinterest.com/pin/1123577807060789333/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/echo-pigeon.jpg"></a></li>
+		<li><a href="https://uk.pinterest.com/pin/1123577807061145996/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/labneh-balls.png"></a></li>
+		<li><a href="https://uk.pinterest.com/pin/1123577807061063513/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/echo-macaw.png"></a></li>
+		<li><a href="https://uk.pinterest.com/pin/1123577807059780388/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/mushroom-burger.png"></a></li>
+		<li><a href="https://uk.pinterest.com/pin/1123577807060865068/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/brownie-original.png"></a></li>
+			<li><a href="https://uk.pinterest.com/pin/1123577807061511135/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/frankie-cake.png"></a></li>
+			<li><a href="https://uk.pinterest.com/pin/1123577807060221425/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/garden-timeline.jpg"></a></li>
+			<li><a href="https://uk.pinterest.com/pin/1123577807060401528/" target="_blank" rel="noopener noreferrer"><img src="/images/pinterest/echo-window.jpg"></a></li>
+    </ul>
+		<br>
+		<h2>The Data: Google Search</h2>
+		<p>Google Search is a slow burn, but a satisfying one as I celebrate reaching over 100 impressions across 25 different queries. Watching the number of indexed pages slowly increase to the 27 I have today, along with learning about sitemaps, and the usefulness of structured data, gives me hope that this will be the main way I am able to connect to strangers in the future.</p>
+		<img class="post-image lightbox-image" src="/images/website/google-search-june-2026.png" alt="">
+		<p>Of course the one click was me trying it out the first time, so I wait with bated breath for that particular number to jump to 2...</p>
+		${divider}
+		<h2 id="lessons">Lessons Learned</h2>
+		<ol class="instructions">
+		  <li>You are your own worst enemy when interpreting small datasets.</li>
+			<li>Publishing imperfect things beats endlessly planning perfect things.</li>
+			<li>AI is an excellent assistant but a terrible architect.</li>
+			<li>I enjoy building infrastructure as much as writing content.</li>
+			<li>Documenting experiences makes them more meaningful.</li>
+			<li>Building a place on the internet feels fundamentally different from using one.</li>
+	  </ol>
+		<br>
+		<h2 id="fav-creations">Favourite Creations</h2>
+		<div class="qa-board">
+      <details class="qa-card qa-card">
+	    <summary class="qa-click-area">
+        <span class="qa-label">Favourite Posts</span>
+		</summary>
+        <ul>
+				<li><b>Overall:</b> Without a doubt <a href="/post/echo-collage">Echo's Collage</a>, going back through his puppy photos brought me so much joy plus it's easily the post I send to friends the most!</li>
+				<li><b>Kitchen:</b> That's a tough one but I'd say <a href="/post/sourdough-bread">Sourdough Bread</a>. It's been a goal that I've been intimidated by for a while so being able to smash it and now help others too makes it extra satisfying.</li>
+				<li><b>Study:</b> It's ultimately a simple idea but <a href="/post/growth-areas">Growth Areas</a>, for the progress they have brought me so far this year.</li>
+				</ul>
+      </details>
+			
+			<details class="qa-card qa-card">
+	    <summary class="qa-click-area">
+        <span class="qa-label">Things I Built That Nobody Asked For</span>
+		</summary>
+        <ul>
+				<li>The timeline infrastructure to record my full garden story, which then got shamelessly stolen across multiple rooms within Soft Alchemy.</li>
+				<li>A method to record my handwriting, though so far only the logo feels extra enough for that treatment!</li>
+				<li>The equivalent of plant pokemon cards in the <a href="/garden/residents">Garden Residents</a> page.</li>
+				<li>Special randomised paw button for the archive, because why not?</li>
+				</ul>
+      </details>
+    </div>
+		<br>
+		<h2 id="worth-it">Was It Worth It?</h2>
+		<div class="two-column-layout equal">
+
+		<section>
+      <p>Absolutely. Soft Alchemy is my proudest achievement of the year so far, and I spend a non-trivial amount of time looking at random pages with a manic grin and "I did a thing!" screeching in my brain. 
+		<br>
+		Even if I were to stop now, I would have created a wonderful record of my sabbatical, an opportunity to learn more about structured data than anyone with under 10 daily users probably should, and a place that feels like mine.
+		<br>
+		As of now the audience may still be small, but the house will keep getting bigger.</p>
+    </section>
+
+    <section class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Posts</td>
+        <td>16</td>
+      </tr>
+			<tr>
+        <td>Pinterest Pins</td>
+        <td>32</td>
+      </tr>
+			<tr>
+        <td>Google Impressions</td>
+        <td>103</td>
+      </tr>
+			<tr>
+        <td>Indexed Pages</td>
+        <td>27</td>
+      </tr>
+			<tr>
+        <td>Daily Users Record</td>
+        <td>6</td>
+      </tr>
+			<tr>
+        <td>ChatGPT Queries</td>
+        <td><del>hundreds</del> classified</td>
+      </tr>
+			<tr>
+        <td>Hours Spent</td>
+        <td>Best not to ask!</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+  </div>
+		`
+	},
+	{
 		id: "garden-plan",
 		date: "2026-06-05",
 		title: "🪴 Crafting A Garden",
