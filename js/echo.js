@@ -65,6 +65,9 @@ const echoGalleryImages = [
   {file: "echo-stick.jpg"},
   {file: "echo-stick-nom.jpeg"},
   {file: "echo-sunset.jpg"},
+  {file: "lamb-braid-chew.png"},
+  {file: "echo-llama-neck.jpeg"},
+  {file: "echo-bean-bag-sleep.jpeg"},
   {
     file: "video/ceilidh-run.mp4",
     note: "No grip, no grip, no grip!"

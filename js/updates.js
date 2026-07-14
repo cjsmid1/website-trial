@@ -1,5 +1,41 @@
 const updates = [
   {
+    id: "life-update-1",
+    category: "Life",
+    title: "Reset after a Holiday",
+    previewTitle: "Reset after<br>a Holiday",
+    date: "2026-07-14",
+    status: "Reflection",
+    metaTitle:
+      "How to Get Back Into a Routine After a Holiday",
+    metaDescription:
+      "Returning from holiday can quietly derail good habits. Here's what happened after my Italy trip, the mistakes I noticed, and the simple reset I'm using to rebuild my morning routine.",
+    body: `
+      <p>I've caught myself drifting lately, and the current theory is that I never properly reset after getting back from Italy. Don't get me wrong, I love being able to get away, enjoy travelling, and I'm incredibly grateful to be in a position to be able to do that. The downside comes a day or two later. The bags are unpacked, you've caught up on sleep, and suddenly you're back to an ordinary Tuesday. Everything feels a little more ordinary again. That's exactly when old habits find an opening, especially if the new ones weren't fully established before you left. In my case those habits are</p>
+      <ul>
+      <li>Just looking at website analytics as a substitute for actually making changes to Soft Alchemy.</li>
+      <li>Morning routine devolving to journaling on the sofa till James comes home from work, with only unhealthy snacks and tea to sustain me.</li>
+      <li>Procrastinating on tasks, such as sorting out a doctor visit, dentist, cloud storage management, watering the garden.</li>
+      <li>The list gets progressively more embarrassing from there, but I think I've made my point.</li>
+      </ul>
+      <p>
+      <b>Next steps:</b> Provide extra support for new areas/habits after a period of interruption (weekend away, moving house, big holiday, illness, etc). Be intentional with re-emphasising the action/habit, using trackers if necessary until it's re-established behaviour.<br>
+      For me that means rebuilding my morning routine:</p> 
+      <ul>
+      <li>8am alarm</li>
+      <li>Make the bed</li>
+      <li>Train Echo</li>
+      <li>Water the garden</li>
+      <li>Feed Echo</li>
+      <li>Meditate</li>
+      <li>Morning pages (my latest experiment)</li>
+      <li>Tea & plan the day</li>
+      <li>When the tea is finished, get ready and start the day's plan</li>
+      </ul>
+      <p>If nothing else, writing it here makes it much harder to pretend I didn't notice.</p>
+    `
+  },
+  {
     id: "75-soft-update-2",
     room: "study",
     category: "Study",

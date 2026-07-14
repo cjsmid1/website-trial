@@ -1,10 +1,8 @@
 const featuredResidents = [
-
-
   {
     project: "tomato",
     title: "Cherry Tomato",
-    status: "Flowering",
+    status: "Fruiting",
     author: "Sown 4 Feb 2026",
     image: "/images/garden/tomato-06-2026.jpeg",
   },
@@ -112,10 +110,10 @@ const plantResidents = [
     type: "Vegetable",
     status: "Missing",
     started: "2026-05-18",
-    image: "/images/garden/empty-bean-trough-06-2026.jpeg",
+    image: "/images/garden/bean-07-2026.png",
     imageSize: "portrait",
     note:
-      "Officially planted. Presence above ground remains suspiciously absent."
+      "Officially planted. Third time's the charm. Presence above ground confirmed."
   },
 
   {
@@ -129,7 +127,7 @@ const plantResidents = [
     image: "/images/garden/garlic-06-2026.jpeg",
     imageSize: "portrait",
     note:
-      "Relocated multiple times in response to weather forecasts and gardener paranoia."
+      "Relocated multiple times in response to weather forecasts and gardener paranoia. Recently harvested on account of being dead."
   },
 
   {

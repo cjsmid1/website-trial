@@ -143,7 +143,7 @@ function siteEntity() {
 function authorEntity() {
   return {
     "@type": "Person",
-    "@id": `${SITE_URL}/about/#claire-smid`,
+    "@id": `${SITE_URL}/about/#claire`,
     "name": "Claire Smid",
     "url": `${SITE_URL}/about/`,
     "description": "Creator of Soft Alchemy, documenting real-world experiments in container gardening, fermentation, cooking, self-improvement and life with a Papillon puppy.",
@@ -315,7 +315,8 @@ function buildPost(post) {
   const ogImage = absoluteImageUrl(post.image);
 
   const author = post.author || "Claire Smid";
-  const publishedTime = post.date || "";
+  const publishedTime = `${post.date}T00:00:00Z` || "";
+  const modified = post.updated ?? post.date;
 
   const postBodyHtml = renderPostBody(post, updates);
 
@@ -343,10 +344,10 @@ function buildPost(post) {
     "name": cleanTitle(post.title),
     "description": metaDescription,
     "image": [ogImage],
-    "author": { "@id": `${SITE_URL}/about/#claire-smid` },
+    "author": { "@id": `${SITE_URL}/about/#claire` },
     "publisher": { "@id": `${SITE_URL}/#organization` },
-    "datePublished": post.date,
-    "dateModified": post.updated || post.date,
+    "datePublished": publishedTime,
+    "dateModified": `${modified}T00:00:00Z`,
     ...(isRecipe ? {
       "recipeCategory": recipeExtras.recipeCategory || (post.tags?.includes("sweet") ? "Dessert" : "Main course"),
       "recipeCuisine": recipeExtras.recipeCuisine || (post.tags?.includes("asian") ? "Asian" : undefined),
@@ -426,7 +427,8 @@ function buildUpdate(update) {
     update.title;
 
   const author = update.author || "Claire Smid";
-  const publishedTime = update.date || "";
+  const publishedTime = `${update.date}T00:00:00Z` || "";
+  const modified = update.updated ?? update.date;
   const extras = structuredDataExtras.updates?.[update.id] || {};
   const updateBodyHtml = renderFullUpdateCard(update, { showPageLink: true });
 
@@ -438,10 +440,10 @@ function buildUpdate(update) {
     "name": cleanTitle(update.title),
     "description": metaDescription,
     "image": [ogImage],
-    "author": { "@id": `${SITE_URL}/about/#claire-smid` },
+    "author": { "@id": `${SITE_URL}/about/#claire` },
     "publisher": { "@id": `${SITE_URL}/#organization` },
-    "datePublished": update.date,
-    "dateModified": update.updated || update.date,
+    "datePublished": publishedTime,
+    "dateModified": `${modified}T00:00:00Z`,
     "articleSection": update.category || update.room || "Update",
     "keywords": [
       update.project,
