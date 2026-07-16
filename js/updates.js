@@ -1,8 +1,8 @@
 const updates = [
   {
-    id: "life-update-1",
+    id: "reset-after-holiday",
     category: "Life",
-    title: "Reset after a Holiday",
+    title: "🏖️ Reset after a Holiday",
     previewTitle: "Reset after<br>a Holiday",
     date: "2026-07-14",
     status: "Reflection",

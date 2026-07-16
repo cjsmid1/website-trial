@@ -400,6 +400,11 @@
   justify-content: center;
 }
 
+.bio-text--left {
+  justify-content: left;
+  margin-left: -1rem;
+}
+
 .bio-text p {
   margin-top: -0.4rem;
 }

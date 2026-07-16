@@ -58,6 +58,70 @@ const sourdoughBreadTimeline = [
 
 const posts = [
 	{
+		id: "choosing-a-puppy-breed",
+		date: "2026-07-16",
+		title: "🐶 Choosing a Puppy: Finding the Right Breed",
+		metaTitle: "How to Choose the Right Puppy Breed | MoSCoW Decision Method",
+		metaDescription:
+			"Choosing a puppy is exciting but overwhelming. Here's how we used the MoSCoW method to compare breeds, challenge our assumptions and narrow down the perfect match.",
+		image: "/images/journal/breed-analysis.png",
+		imageAlt: "Handwritten comparison of puppy breeds scored using personal selection criteria.",
+		category: "Life",
+		tags: ["decision-making", "dog-approved"],
+		excerpt:
+			"The time getting a puppy began not with puppies, but with a notebook full of questions.",
+		content: `
+		<section class="summary-note">
+	  <div class="summary-note-label"></div>
+	  <p>Before falling in love with a puppy, make sure you're ready for the commitment. Then use a <a href="#moscow">simple decision framework</a> to separate your must-haves from your nice-to-haves, <a href="#breed-comparison">compare breeds</a> objectively, and be prepared to change your mind as you learn more.</p>
+	  </section>
+		<figure class="post-image">
+		  <img src="/images/puppies-in-basket.jpg" alt="Basket of cute puppies">
+    </figure>
+		<p>Congratulations, you've decided to get a puppy! (Or we're pretending you have for the sake of this article.)<br>
+		Before we get carried away imagining tiny balls of fluff and puppy zoomies, here are the three things that stopped me getting a puppy for years so please make sure you've thoroughly considered the following:
+		<ul>
+		<li><b>Stable environment:</b> are you in a place where you don't intend to move for a while, and have enough space for a dog?<br>(I've heard of flats working but do consider the fact you'll need to let your dog out very regularly, especially as a puppy!)<br>(Living in shared accommodation and then abroad was why I failed this criterion for many years.)</li>
+		<li><b>Stable finances:</b> dogs may not be as expensive as children but the costs still add up! Food, vets, toys, treats, the list goes on.</li>
+		<li><b>Stable commitment:</b> are you able to commit time to your new dog? You will be their whole world and, especially for a puppy, abandoning them for 8 hours while you go to work just isn't fair. Granted you can find ways around that, but make sure you really are able and willing to put in the time, love and training consistently to raise a pet.</li>
+		</ul>
+		<p>Okay with all the responsible caveats out of the way, let's try that again. Congratulations you've decided to get a puppy!<br>
+		...<br>
+		Now what?</p>
+		<br>
+		<h2>The How, What & When of Puppies</h2>
+		<p>When James first turned to me and said yes we can get a dog together, it took me a while to get down from cloud nine. Fortunately I'm pretty sure my main love language is over-planning so my excitement was soon channelled into answering every question I could think of.</p>
+		<p><b>When?</b> This was fairly simple for us as we were already planning to move in together in Woking in the summer of 2025, getting a puppy before we had found a dog friendly new home and had properly settled in, was impractical. Mild spoiler: despite that my brain still made attempts to convince myself it was doable and a slightly desperate email may have been sent to my London landlord asking if there was any conceivable universe in which a puppy might be allowed for the final few weeks of my tenancy.<p>
+
+		<div class="bio bio--reverse">
+      <img class="bio-image bio-image--not-square" src="/images/echo/sofa-affection.png" />
+
+      <div class="bio-text--left">
+        <p>
+          <b>What?</b> Given we had already decided on a puppy rather than... hang on Echo has commandeered one of my hands in the name of pets.<br>
+					Where was I? Ah yes, we had chosen a puppy over a rescue given this was our first dog together and I was planning my sabbatical so would have extra time to commit to raising and training the puppy so we wanted to make the most of that. This then narrowed our 'what' question down to 'which breed', and I had the perfect journal decision tool for the job.
+        </p>
+      </div>
+    </div>
+
+		<br>
+		<h2 id="moscow">Decision Making: MoSCoW Method</h2>
+		<p>Yes I know the name is a little awkward given the state of the world but bear with me, this is actually a really useful way to make big decisions! Moscow stands for Must, Should, Could & Want. In the case of dog breeds, James and I both listed what characteristics our future dog must have, should have, could have and which we just wanted them to have. If you're still a little lost, fear not I come armed with my journal!</p>
+		<figure class="post-image">
+		  <img src="/images/journal/dog-moscow.png" alt="">
+		  <figcaption>In case you're wondering: puffballs is our euphemism for babies/toddlers, 'ick factor' refers to my hand eczema disliking certain fur types, and 'w/' is my shorthand for with.</figcaption>
+    </figure>
+		<p>One advantage of breaking down your desires this way, is that it allows you to better prioritise what is truly important to you (the musts) while allowing for the shoulds and emotional wants. The could section is an opportunity to brainstorm out of the box options you would be okay with, though it didn't really apply in our situation as much. (Heads up: this can be particularly insightful when completing it separately and then exchanging answers, if you're doing this with another person.)</p>
+
+		<p id="breed-comparison">While this is useful, the real magic comes afterwards. You can score possible solutions/decisions according to the criteria you've created within the MoSCoW categories. In our example we combined and refined our answers and then scored potential dog breeds to get a total overall score for each breed. Each tick counted as one point, and half marks were introduced very quickly for maybe cases. Normally I would recommend weighing the musts more heavily than the wants so that a breed which failed an important criterion couldn't make up for it just by being fluffy, but at the time of creating the table I just counted all the ticks up for a total score.</p>
+		<figure class="post-image">
+		  <img src="/images/journal/breed-analysis.png" alt="">
+    </figure>
+		<p>Looking at the results, you may realise that there were things you missed in your initial MoSCoW analysis. For example, James realised he preferred a rarer breed after I'd sent him the umpteenth link to a Cavapoo litter. You may also discover that you hadn't researched a breed as thoroughly as you thought.</p>
+		<p>The table above is actually the final version of our analysis. Earlier on, the Dutch Kooikerhondje scored much higher. Maybe it was because it was the first breed we researched, maybe I'd always loved the idea of owning a Dutch breed, or maybe I was simply captivated by a dog with earrings. Whatever the reason, I became rather attached to the idea of owning one. That's how we found ourselves standing on the doorstep of a Kooikerhondje litter in East London. But that story deserves a post of its own.</p>
+		`
+	},
+	{
 		id: "soft-alchemy",
 		date: "2026-06-30",
 		title: "🌐 Soft Alchemy: The Beginning",
